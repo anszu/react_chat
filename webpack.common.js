@@ -8,9 +8,6 @@ module.exports = {
       publicPath: '/',
       filename: 'bundle.js'
     },
-    devServer: {
-      contentBase: './build',
-    },
     module: {
       rules: [
       {
