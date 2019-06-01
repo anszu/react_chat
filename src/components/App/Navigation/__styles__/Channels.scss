@@ -1,0 +1,40 @@
+.Channels {
+    height: 85%;
+    background-color: #343a40;
+    padding: 20px;
+}
+
+.ChannelsList {
+    padding: 0px;
+    height: 100%;
+    overflow: scroll;
+}
+
+.ChannelsElement {
+    color: darkgray;
+    cursor: pointer;
+    list-style-type: none;
+    
+    &:before {
+        content: "# ";    
+    }
+
+    &:hover {
+        color: white;
+    }
+}
+
+.ChannelsElement--active {
+    color: #1b1e21; 
+}
+
+.ChannelsName {
+    font-weight: bold;
+}
+
+.ChannelsTopic {
+    font-size: 11px;
+    font-style: italics;
+    display: block;
+    padding-bottom: 10px;
+}

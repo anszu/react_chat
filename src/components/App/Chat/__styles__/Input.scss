@@ -1,0 +1,17 @@
+.Input {
+    width: 100%;
+    height: 15%;
+    padding: 20px;
+    text-align: right;
+    overflow: scroll;
+    background-color: #343a40;
+}
+
+.InputForm {
+    display: flex;
+}
+
+.InputButton {
+    margin-left: 10px;
+    font-size: 12px;
+}
