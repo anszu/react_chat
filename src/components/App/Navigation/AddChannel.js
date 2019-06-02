@@ -1,16 +1,43 @@
 import React from 'react';
+import useForm from '../Hooks/useForm.js';
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
+    const {
+        values,
+        handleChange,
+        handleSubmit,
+        handleClick
+    } = useForm({ name: 'Name', topic: 'Thema' }, 'channels');
+
     return (
         <div className="AddChannel">
             <div className="AddChannelHeader">
                 Neuer Channel:
             </div>
-            <span className="AddChannelForm">
-                <input type="text" className="form-control"/>
-                <button type="button" className="AddChannelButton btn btn-dark">+</button>
-            </span>
+            <form onSubmit={handleSubmit}>
+                <span className="AddChannelForm">
+                    <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        value={values.name}
+                        onChange={handleChange}
+                        onClick={handleClick}
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="topic"
+                        className="form-control"
+                        value={values.topic}
+                        onChange={handleChange}
+                        onClick={handleClick}
+                        required
+                    />
+                    <button type="submit" className="AddChannelButton btn btn-dark">+</button>
+                </span>
+            </form>
         </div>
     );
 };

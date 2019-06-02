@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
+import withData from '../HOC/withData.js';
+import PropTypes from 'prop-types';
 import './__styles__/Channels.scss';
 
 class Channels extends Component {
-    constructor () {
-        super();
-
-        this.state = {
-            channelList: []
-        };
-    }
-
-    componentDidMount () {
-        fetch('http://34.243.3.31:8080/channels', {
-            headers: {
-                'X-Group-Token': 'glvWcuOo6Rl7'
-            }
-        })
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ channelList: data._embedded.channelList });
-            });
+    handleClick (event) {
+        console.log(event.currentTarget.getAttribute('id'));
     }
 
     render () {
         return (
             <div className="Channels">
                 <ul className="ChannelsList">
-                    { this.state.channelList.map((item) => {
+                    { this.props.data.map((item) => {
                         if (item.name) {
                             return (
                                 <li key={item.id}
-                                    className="ChannelsElement">
+                                    id={item.id}
+                                    className="ChannelsElement"
+                                    onClick={this.handleClick}>
                                     <span className="ChannelsName">
                                         {item.name}
                                     </span>
@@ -47,4 +35,8 @@ class Channels extends Component {
     }
 }
 
-export default Channels;
+Channels.propTypes = {
+    data: PropTypes.array
+};
+
+export default withData(Channels, 'channels', 'channelList');
