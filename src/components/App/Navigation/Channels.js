@@ -39,4 +39,4 @@ Channels.propTypes = {
     data: PropTypes.array
 };
 
-export default withData(Channels, 'channels', 'channelList');
+export default withData(Channels, 'channelList', '', 10000);

@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navigation from './Navigation/';
 import Chat from './Chat/';
+import { AppContextProvider } from './AppContext.js';
 import './App.scss';
 
-export default class App extends Component {
-    constructor () {
-        super();
-        this.state = {
-            channelId: 2
-        };
-    }
-
-    render () {
-        return (
-            <div className="App">
+const App = () => {
+    return (
+        <div className="App">
+            <AppContextProvider value="1">
                 <Navigation/>
                 <Chat/>
-            </div>
-        );
-    }
-}
+            </AppContextProvider>
+        </div>
+    );
+};
+
+export default App;
