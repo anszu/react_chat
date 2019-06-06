@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withData from '../HOC/withData.js';
+import withData from '../HOC/withData';
 import './__styles__/Header.scss';
 
 const Header = ({ data }) => {

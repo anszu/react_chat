@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as CONST from '../constants';
 
 const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = false) => {
     return class extends Component {
@@ -27,10 +28,8 @@ const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = f
         }
 
         callAPI () {
-            fetch(`http://34.243.3.31:8080/channels/${ApiParam}`, {
-                headers: {
-                    'X-Group-Token': 'glvWcuOo6Rl7'
-                }
+            fetch(`${CONST.API_GET_URL}/${ApiParam}`, {
+                headers: CONST.API_TOKEN
             })
                 .then(res => res.json())
                 .then((data) => {

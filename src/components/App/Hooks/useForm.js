@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as CONST from '../constants';
 
 const useForm = (presetValues, ApiParam, staticValues = []) => {
     const [values, setValues] = useState(presetValues);
@@ -14,12 +15,9 @@ const useForm = (presetValues, ApiParam, staticValues = []) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://34.243.3.31:8080/${ApiParam}`, {
+        fetch(`${CONST.API_POST_URL}/${ApiParam}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Group-Token': 'glvWcuOo6Rl7'
-            },
+            headers: CONST.API_HEADERS,
             body: JSON.stringify(values)
         })
             .then((res) => {

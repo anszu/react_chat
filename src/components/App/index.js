@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation/';
 import Chat from './Chat/';
-import { AppContextProvider } from './AppContext.js';
+import { AppContextProvider } from './AppContext';
 import './App.scss';
 
 const App = () => {

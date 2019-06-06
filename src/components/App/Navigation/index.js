@@ -1,6 +1,6 @@
 import React from 'react';
-import Channels from './Channels.js';
-import AddChannel from './AddChannel.js';
+import Channels from './Channels';
+import AddChannel from './AddChannel';
 import './__styles__/Navigation.scss';
 
 const Navigation = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../Hooks/useForm.js';
+import useForm from '../Hooks/useForm';
 import './__styles__/Input.scss';
 
 const Input = () => {

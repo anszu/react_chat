@@ -25,4 +25,4 @@ Content.propTypes = {
     data: PropTypes.array
 };
 
-export default withData(Content, 'messageList', '10/messages', 1000);
+export default withData(Content, 'messageList', '1/messages', 1000);

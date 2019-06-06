@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withData from '../HOC/withData.js';
+import withData from '../HOC/withData';
 import PropTypes from 'prop-types';
 import './__styles__/Channels.scss';
 
@@ -31,7 +31,7 @@ class Channels extends Component {
                                     </span>
                                     <form>
                                         <span className="ChannelsForm">
-                                            <input type="text" className="ChannelsInput form-control" value="Username"/>
+                                            <input type="text" className="ChannelsInput form-control"/>
                                             <button type="submit" className="ChannelsButton btn btn-light">></button>
                                         </span>
                                     </form>
