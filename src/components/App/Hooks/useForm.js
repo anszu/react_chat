@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const useForm = (presetValues, ApiParam) => {
+const useForm = (presetValues, ApiParam, staticValues = []) => {
     const [values, setValues] = useState(presetValues);
 
     const handleClick = (event) => {
@@ -9,6 +9,7 @@ const useForm = (presetValues, ApiParam) => {
 
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
+        console.log(values);
     };
 
     const handleSubmit = (event) => {
@@ -22,8 +23,13 @@ const useForm = (presetValues, ApiParam) => {
             body: JSON.stringify(values)
         })
             .then((res) => {
-                console.log(res);
-                setValues({});
+                // cleanup values, spare static values
+                Object.keys(values).forEach((key) => {
+                    if (!staticValues.includes(key)) {
+                        values[key] = '';
+                    }
+                });
+                setValues({ ...values });
             });
     };
 

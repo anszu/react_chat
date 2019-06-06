@@ -25,7 +25,11 @@
 }
 
 .ChannelsElement--active {
-    color: #1b1e21; 
+    color: white; 
+
+    .ChannelsForm {
+        display: flex;
+    }
 }
 
 .ChannelsName {
@@ -37,4 +41,17 @@
     font-style: italics;
     display: block;
     padding-bottom: 10px;
+}
+
+.ChannelsForm {
+    display: none;
+}
+
+.ChannelsInput {
+    font-size: 10px;
+}
+
+.ChannelsButton {
+    font-size: 10px;
+    margin-left: 10px;
 }

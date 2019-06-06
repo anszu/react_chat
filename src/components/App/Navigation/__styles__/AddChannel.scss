@@ -6,12 +6,19 @@
 
 .AddChannelHeader {
     font-size: 12px;
+    font-weight: bold;
 }
 
 .AddChannelForm {
     display: flex;
 }
 
+.AddChannelInput {
+    font-size: 10px;
+    color: darkgray;
+}
+
 .AddChannelButton {
+    font-size: 10px;
     margin-left: 10px;
 }

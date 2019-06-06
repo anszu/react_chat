@@ -34,7 +34,6 @@ const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = f
             })
                 .then(res => res.json())
                 .then((data) => {
-                    console.log(data);
                     if (data._embedded && ApiItem) {
                         this.setState({ data: data._embedded[ApiItem] });
                     } else {

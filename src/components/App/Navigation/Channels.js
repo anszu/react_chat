@@ -5,7 +5,11 @@ import './__styles__/Channels.scss';
 
 class Channels extends Component {
     handleClick (event) {
-        console.log(event.currentTarget.getAttribute('id'));
+        let elems = document.querySelectorAll(".ChannelsElement.ChannelsElement--active");
+        elems.forEach((el) => {
+            el.classList.remove('ChannelsElement--active');
+        });
+        event.currentTarget.classList.add('ChannelsElement--active');
     }
 
     render () {
@@ -25,6 +29,12 @@ class Channels extends Component {
                                     <span className="ChannelsTopic">
                                         {item.topic}
                                     </span>
+                                    <form>
+                                        <span className="ChannelsForm">
+                                            <input type="text" className="ChannelsInput form-control" value="Username"/>
+                                            <button type="submit" className="ChannelsButton btn btn-light">></button>
+                                        </span>
+                                    </form>
                                 </li>
                             );
                         }

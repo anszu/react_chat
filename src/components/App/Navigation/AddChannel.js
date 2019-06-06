@@ -20,7 +20,7 @@ const AddChannel = () => {
                     <input
                         type="text"
                         name="name"
-                        className="form-control"
+                        className="AddChannelInput form-control"
                         value={values.name}
                         onChange={handleChange}
                         onClick={handleClick}
@@ -29,7 +29,7 @@ const AddChannel = () => {
                     <input
                         type="text"
                         name="topic"
-                        className="form-control"
+                        className=" AddChannelInput form-control"
                         value={values.topic}
                         onChange={handleChange}
                         onClick={handleClick}

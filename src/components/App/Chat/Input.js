@@ -7,7 +7,7 @@ const Input = () => {
         values,
         handleChange,
         handleSubmit
-    } = useForm({ content: '', creator: 'MallorcaJane' }, '/channels/10/messages');
+    } = useForm({ content: '', creator: 'MallorcaJane' }, '/channels/10/messages', ['creator']);
 
     return (
         <div className="Input">
