@@ -1,13 +1,14 @@
 import React from 'react';
 import useForm from '../Hooks/useForm';
+import PropTypes from 'prop-types';
 import './__styles__/Input.scss';
 
-const Input = () => {
+const Input = ({ ChannelId, UserName }) => {
     const {
         values,
         handleChange,
         handleSubmit
-    } = useForm({ content: '', creator: 'MallorcaJane' }, '/channels/10/messages', ['creator']);
+    } = useForm({ content: '', creator: UserName }, `/channels/${ChannelId}/messages`);
 
     return (
         <div className="Input">
@@ -17,6 +18,11 @@ const Input = () => {
             </form>
         </div>
     );
+};
+
+Input.propTypes = {
+    ChannelId: PropTypes.number,
+    UserName: PropTypes.string
 };
 
 export default Input;

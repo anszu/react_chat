@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withData from '../HOC/withData';
+import useAPI from '../Hooks/useAPI';
 import './__styles__/Header.scss';
 
-const Header = ({ data }) => {
+const Header = ({ APIParam }) => {
+    const { values } = useAPI(false, APIParam);
+
     return (
         <div className="Header">
-            <span className="HeaderName">{data.name}</span>
-            <span className="HeaderTopic">({data.topic})</span>
+            { values &&
+                <>
+                    <span className="HeaderName">{values.name}</span>
+                    <span className="HeaderTopic">{values.topic}</span>
+                </>
+            }
         </div>
     );
 };
 
 Header.propTypes = {
-    data: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object
-    ])
+    APIParam: PropTypes.number
 };
 
-export default withData(Header, false, '2');
+export default Header;

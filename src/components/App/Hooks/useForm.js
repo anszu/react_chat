@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as CONST from '../constants';
 
-const useForm = (presetValues, ApiParam, staticValues = []) => {
+const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
     const [values, setValues] = useState(presetValues);
 
     const handleClick = (event) => {
@@ -10,25 +10,24 @@ const useForm = (presetValues, ApiParam, staticValues = []) => {
 
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
-        console.log(values);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`${CONST.API_POST_URL}/${ApiParam}`, {
-            method: 'POST',
-            headers: CONST.API_HEADERS,
-            body: JSON.stringify(values)
-        })
-            .then((res) => {
-                // cleanup values, spare static values
-                Object.keys(values).forEach((key) => {
-                    if (!staticValues.includes(key)) {
-                        values[key] = '';
-                    }
+
+        if (callbackSubmit) {
+            callbackSubmit(values);
+        } else {
+            fetch(`${CONST.API_POST_URL}/${ApiParam}`, {
+                method: 'POST',
+                headers: CONST.API_HEADERS,
+                body: JSON.stringify(values)
+            })
+                .then((res) => {
+                    // cleanup values
+                    setValues(presetValues);
                 });
-                setValues({ ...values });
-            });
+        }
     };
 
     return {

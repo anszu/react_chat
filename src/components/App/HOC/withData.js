@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import * as CONST from '../constants';
 
-const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = false) => {
+const withData = (WrappedComponent, APIItem = '', APIParam = '', RefreshTime = false) => {
     return class extends Component {
         constructor (props) {
-            super();
+            super(props);
 
             this.state = {
                 data: []
             };
 
             this.callAPI = this.callAPI.bind(this);
+            this.APIParam = this.props.APIParam ? this.props.APIParam : APIParam;
         }
 
         componentDidMount () {
@@ -28,13 +29,13 @@ const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = f
         }
 
         callAPI () {
-            fetch(`${CONST.API_GET_URL}/${ApiParam}`, {
+            fetch(`${CONST.API_GET_URL}/${this.APIParam}`, {
                 headers: CONST.API_TOKEN
             })
                 .then(res => res.json())
                 .then((data) => {
-                    if (data._embedded && ApiItem) {
-                        this.setState({ data: data._embedded[ApiItem] });
+                    if (data._embedded && APIItem) {
+                        this.setState({ data: data._embedded[APIItem] });
                     } else {
                         this.setState({ data: data });
                     }
@@ -43,7 +44,7 @@ const withData = (WrappedComponent, ApiItem = '', ApiParam = '', RefreshTime = f
 
         render () {
             return (
-                <WrappedComponent data={this.state.data}/>
+                <WrappedComponent data={this.state.data} {...this.props}/>
             );
         }
     };

@@ -1,52 +1,63 @@
-import React, { Component } from 'react';
-import withData from '../HOC/withData';
+import React, { useState } from 'react';
+import AddUserName from './AddUserName';
+import useAPI from '../Hooks/useAPI';
 import PropTypes from 'prop-types';
 import './__styles__/Channels.scss';
 
-class Channels extends Component {
-    handleClick (event) {
+const Channels = ({ ChannelId, UserName, changeChannelInfo }) => {
+    const { values } = useAPI('channelList', '', 10000);
+    const [currentChannel, setCurrentChannel] = useState(ChannelId);
+
+    const handleClick = (event) => {
         let elems = document.querySelectorAll(".ChannelsElement.ChannelsElement--active");
         elems.forEach((el) => {
             el.classList.remove('ChannelsElement--active');
         });
         event.currentTarget.classList.add('ChannelsElement--active');
-    }
+        setCurrentChannel(parseInt(event.currentTarget.id, 10));
+    };
 
-    render () {
-        return (
-            <div className="Channels">
+    const handleSubmit = (values) => {
+        changeChannelInfo(currentChannel, values.username);
+    };
+
+    return (
+        <div className="Channels">
+            <div className="ChannelsUser">eingeloggt als {UserName}</div>
+            { values &&
                 <ul className="ChannelsList">
-                    { this.props.data.map((item) => {
+                    { values.data.map((item) => {
                         if (item.name) {
                             return (
                                 <li key={item.id}
                                     id={item.id}
-                                    className="ChannelsElement"
-                                    onClick={this.handleClick}>
-                                    <span className="ChannelsName">
+                                    className={
+                                        `ChannelsElement 
+                                        ${ChannelId === item.id ? 'ChannelsElement--active' : ''}`
+                                    }
+                                    onClick={handleClick}>
+                                    <div className="ChannelsName">
                                         {item.name}
-                                    </span>
+                                    </div>
                                     <span className="ChannelsTopic">
                                         {item.topic}
                                     </span>
-                                    <form>
-                                        <span className="ChannelsForm">
-                                            <input type="text" className="ChannelsInput form-control"/>
-                                            <button type="submit" className="ChannelsButton btn btn-light">></button>
-                                        </span>
-                                    </form>
+                                    <AddUserName UserName={UserName} handleUserSubmit={handleSubmit}/>
                                 </li>
                             );
                         }
                     })}
                 </ul>
-            </div>
-        );
-    }
-}
-
-Channels.propTypes = {
-    data: PropTypes.array
+            }
+        </div>
+    );
 };
 
-export default withData(Channels, 'channelList', '', 10000);
+Channels.propTypes = {
+    UserName: PropTypes.string,
+    ChannelId: PropTypes.number,
+    changeChannelInfo: PropTypes.func
+};
+
+export default Channels;
+// export default withData(Channels, 'channelList', '', 10000);

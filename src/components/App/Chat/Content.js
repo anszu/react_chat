@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Message from './Message';
-import withData from '../HOC/withData.js';
+// import withData from '../HOC/withData.js';
+import useAPI from '../Hooks/useAPI';
 import PropTypes from 'prop-types';
 import './__styles__/Content.scss';
 
-class Content extends Component {
-    render () {
-        return (
-            <div className="Content">
-                { this.props.data.map(item => {
+const Content = ({ APIParam }) => {
+    const { values } = useAPI('messageList', `${APIParam}/messages`, 1000);
+    return (
+        <div className="Content">
+            { values &&
+                <>
+                { values.data.map(item => {
                     return (
                         <Message key={item.id}
                             name={item.creator}
@@ -16,13 +19,16 @@ class Content extends Component {
                             content={item.content}/>
                     );
                 })}
-            </div>
-        );
-    }
-}
-
-Content.propTypes = {
-    data: PropTypes.array
+                </>
+            }
+        </div>
+    );
 };
 
-export default withData(Content, 'messageList', '1/messages', 1000);
+Content.propTypes = {
+    APIParam: PropTypes.number
+};
+
+export default Content;
+
+// export default withData(Content, 'messageList', '1/messages', 1000);

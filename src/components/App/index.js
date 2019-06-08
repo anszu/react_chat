@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from './Navigation/';
 import Chat from './Chat/';
-import { AppContextProvider } from './AppContext';
 import './App.scss';
 
 const App = () => {
+    const [ChannelId, setChannelId] = useState(1);
+    const [UserName, setUserName] = useState('guest');
+
+    const changeChannelInfo = (ChannelId, UserName) => {
+        setChannelId(ChannelId);
+        setUserName(UserName);
+    };
+
     return (
         <div className="App">
-            <AppContextProvider value="1">
-                <Navigation/>
-                <Chat/>
-            </AppContextProvider>
+            <Navigation ChannelId={ChannelId} changeChannelInfo={changeChannelInfo} UserName={UserName}/>
+            <Chat ChannelId={ChannelId} UserName={UserName}/>
         </div>
     );
 };
