@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useAPI from '../Hooks/useAPI';
+import useGetAPI from '../Hooks/useGetAPI';
+import * as CONST from '../constants';
 import './__styles__/UserList.scss';
 
 const UserList = ({ APIParam }) => {
-    const { values } = useAPI(false, `${APIParam}/users`, 1000);
+    const { values } = useGetAPI(false, `/channels/${APIParam}/users`, CONST.REFRESH_USERLIST);
 
     return (
         <div className="UserList">

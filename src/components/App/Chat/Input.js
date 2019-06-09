@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../Hooks/useForm';
+import usePostAPI from '../Hooks/usePostApi';
 import PropTypes from 'prop-types';
 import './__styles__/Input.scss';
 
@@ -8,11 +8,11 @@ const Input = ({ ChannelId, UserName }) => {
         values,
         handleChange,
         handleSubmit,
-        changeCreator
-    } = useForm({ content: '', creator: UserName }, `/channels/${ChannelId}/messages`);
+        updateValue
+    } = usePostAPI({ content: '', creator: UserName }, `/channels/${ChannelId}/messages`);
 
     // update creator if necessary
-    changeCreator(UserName);
+    updateValue(UserName, 'creator');
 
     return (
         <div className="Input">

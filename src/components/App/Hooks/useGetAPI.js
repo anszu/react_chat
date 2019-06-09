@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as CONST from '../constants';
 
-const useAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
+const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
     const [values, setValues] = useState();
     let interval = false;
 
@@ -12,7 +12,7 @@ const useAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
             .then(res => res.json())
             .then((data) => {
                 if (data._embedded && APIItem) {
-                    setValues({ data: data._embedded[APIItem] });
+                    setValues({ data: data._embedded[APIItem], links: data._links });
                 } else {
                     setValues(data);
                 }
@@ -36,10 +36,9 @@ const useAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
     }, [APIParam]);
 
     return {
-        values,
-        callAPI
+        values
     };
 };
 
-export default useAPI;
+export default useGetAPI;
 

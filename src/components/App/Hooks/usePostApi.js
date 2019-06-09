@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as CONST from '../constants';
 
-const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
+const usePostAPI = (presetValues, ApiParam, callbackSubmit = false) => {
     const [values, setValues] = useState(presetValues);
 
     const handleClick = (event) => {
@@ -12,9 +12,9 @@ const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
 
-    const changeCreator = (UserName) => {
-        if (values.creator !== UserName) {
-            setValues({ ...values, creator: UserName });
+    const updateValue = (newValue, key) => {
+        if (values[key] !== newValue) {
+            setValues({ ...values, [key]: newValue });
         }
     };
 
@@ -31,6 +31,7 @@ const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
                 .then((res) => {
                     // cleanup values
                     setValues(presetValues);
+                    console.log(res);
                 });
         }
     };
@@ -40,8 +41,8 @@ const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
         handleChange,
         handleSubmit,
         handleClick,
-        changeCreator
+        updateValue
     };
 };
 
-export default useForm;
+export default usePostAPI;

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useAPI from '../Hooks/useAPI';
+import useGetAPI from '../Hooks/useGetAPI';
 import './__styles__/ChatName.scss';
 
 const ChatName = ({ APIParam }) => {
-    const { values } = useAPI(false, APIParam);
+    const { values } = useGetAPI(false, `/channels/${APIParam}`);
 
     return (
         <div className="ChatName">

@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../Hooks/useForm';
+import usePostAPI from '../Hooks/usePostApi';
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
@@ -8,7 +8,7 @@ const AddChannel = () => {
         handleChange,
         handleSubmit,
         handleClick
-    } = useForm({ name: 'Name', topic: 'Thema' }, 'channels');
+    } = usePostAPI({ name: 'Name', topic: 'Thema' }, 'channels');
 
     return (
         <div className="AddChannel">

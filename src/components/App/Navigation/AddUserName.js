@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../Hooks/useForm';
+import usePostAPI from '../Hooks/usePostApi';
 import PropTypes from 'prop-types';
 import './__styles__/AddUserName.scss';
 
@@ -9,7 +9,7 @@ const AddUserName = ({ UserName, handleUserSubmit }) => {
         handleChange,
         handleSubmit,
         handleClick
-    } = useForm({ creator: UserName }, false, handleUserSubmit);
+    } = usePostAPI({ creator: UserName }, false, handleUserSubmit);
 
     return (
         <form className="AddUserNameForm" onSubmit={handleSubmit}>
