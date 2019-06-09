@@ -12,9 +12,14 @@ const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
 
+    const changeCreator = (UserName) => {
+        if (values.creator !== UserName) {
+            setValues({ ...values, creator: UserName });
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-
         if (callbackSubmit) {
             callbackSubmit(values);
         } else {
@@ -34,7 +39,8 @@ const useForm = (presetValues, ApiParam, callbackSubmit = false) => {
         values,
         handleChange,
         handleSubmit,
-        handleClick
+        handleClick,
+        changeCreator
     };
 };
 

@@ -9,14 +9,14 @@ const AddUserName = ({ UserName, handleUserSubmit }) => {
         handleChange,
         handleSubmit,
         handleClick
-    } = useForm({ username: UserName }, false, handleUserSubmit);
+    } = useForm({ creator: UserName }, false, handleUserSubmit);
 
     return (
         <form className="AddUserNameForm" onSubmit={handleSubmit}>
             <input
                 type="text"
-                name="username"
-                value={values.username}
+                name="creator"
+                value={values.creator}
                 className="AddUserNameInput form-control"
                 onChange={handleChange}
                 onClick={handleClick}

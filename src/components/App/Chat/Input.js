@@ -7,8 +7,12 @@ const Input = ({ ChannelId, UserName }) => {
     const {
         values,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        changeCreator
     } = useForm({ content: '', creator: UserName }, `/channels/${ChannelId}/messages`);
+
+    // update creator if necessary
+    changeCreator(UserName);
 
     return (
         <div className="Input">

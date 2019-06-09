@@ -18,7 +18,7 @@ const Channels = ({ ChannelId, UserName, changeChannelInfo }) => {
     };
 
     const handleSubmit = (values) => {
-        changeChannelInfo(currentChannel, values.username);
+        changeChannelInfo(currentChannel, values.creator);
     };
 
     return (
