@@ -2,13 +2,17 @@ import React from 'react';
 import Content from './Content';
 import { PropTypes } from 'prop-types';
 import Input from './Input';
-import Header from './Header';
+import ChatName from './ChatName';
+import UserList from './UserList';
 import './__styles__/Chat.scss';
 
 const Chat = ({ ChannelId, UserName }) => {
     return (
         <div className="Chat">
-            <Header APIParam={ChannelId}/>
+            <span className="ChatHeader">
+                <UserList APIParam={ChannelId}/>
+                <ChatName APIParam={ChannelId}/>
+            </span>
             <Content APIParam={ChannelId}/>
             <Input ChannelId={ChannelId} UserName={UserName}/>
         </div>

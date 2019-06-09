@@ -15,10 +15,6 @@
     color: darkgray;
     cursor: pointer;
     list-style-type: none;
-    
-    &:before {
-        content: "# ";    
-    }
 
     &:hover {
         color: white;

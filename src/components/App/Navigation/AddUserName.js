@@ -12,18 +12,16 @@ const AddUserName = ({ UserName, handleUserSubmit }) => {
     } = useForm({ username: UserName }, false, handleUserSubmit);
 
     return (
-        <form onSubmit={handleSubmit}>
-            <span className="AddUserNameForm">
-                <input
-                    type="text"
-                    name="username"
-                    value={values.username}
-                    className="AddUserNameInput form-control"
-                    onChange={handleChange}
-                    onClick={handleClick}
-                />
-                <button type="submit" className="AddUserNameButton btn btn-light">></button>
-            </span>
+        <form className="AddUserNameForm" onSubmit={handleSubmit}>
+            <input
+                type="text"
+                name="username"
+                value={values.username}
+                className="AddUserNameInput form-control"
+                onChange={handleChange}
+                onClick={handleClick}
+            />
+            <button type="submit" className="AddUserNameButton btn btn-light">></button>
         </form>
     );
 };
