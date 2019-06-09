@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Navigation from './Navigation/';
-import Chat from './Chat/';
+import Channels from './Channels/';
+import Chat from './Chat';
+import { AppContextProvider } from './AppContext';
 import './App.scss';
 
 const App = () => {
@@ -14,8 +15,13 @@ const App = () => {
 
     return (
         <div className="App">
-            <Navigation ChannelId={ChannelId} changeChannelInfo={changeChannelInfo} UserName={UserName}/>
-            <Chat ChannelId={ChannelId} UserName={UserName}/>
+            <AppContextProvider value={{
+                ChannelId: ChannelId,
+                UserName: UserName,
+                changeChannelInfo: changeChannelInfo }}>
+                <Channels/>
+                <Chat/>
+            </AppContextProvider>
         </div>
     );
 };

@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Message from './Message';
 import * as CONST from '../constants';
 import useGetAPI from '../Hooks/useGetAPI';
-import PropTypes from 'prop-types';
+import { AppContext } from '../AppContext';
 import './__styles__/Content.scss';
 
-const Content = ({ APIParam }) => {
-    const { values } = useGetAPI('messageList', `/channels/${APIParam}/messages`, CONST.REFRESH_MESSAGES);
+const Content = () => {
+    const { ChannelId } = useContext(AppContext);
+    const { values } = useGetAPI('messageList', `/channels/${ChannelId }/messages`, CONST.REFRESH_MESSAGES);
 
     useEffect(() => {
         const element = document.getElementById("Content");
@@ -31,10 +32,4 @@ const Content = ({ APIParam }) => {
     );
 };
 
-Content.propTypes = {
-    APIParam: PropTypes.number
-};
-
 export default Content;
-
-// export default withData(Content, 'messageList', '1/messages', 1000);

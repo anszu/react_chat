@@ -1,0 +1,25 @@
+.Channels {
+    width: 300px;
+    height: 100%;
+}
+
+.ChannelsBar {
+    height: 85%;
+    background-color: #343a40;
+    padding: 20px;
+}
+
+.ChannelsList {
+    padding: 0px;
+    height: 90%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.ChannelsUser {
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 5px;
+    text-align: center;
+}

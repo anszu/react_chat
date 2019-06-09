@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import useGetAPI from '../Hooks/useGetAPI';
+import { AppContext } from '../AppContext';
 import './__styles__/ChatName.scss';
 
-const ChatName = ({ APIParam }) => {
-    const { values } = useGetAPI(false, `/channels/${APIParam}`);
+const ChatName = () => {
+    const { ChannelId } = useContext(AppContext);
+    const { values } = useGetAPI(false, `/channels/${ChannelId}`);
 
     return (
         <div className="ChatName">

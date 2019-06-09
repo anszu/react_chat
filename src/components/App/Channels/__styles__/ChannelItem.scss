@@ -1,17 +1,4 @@
-.Channels {
-    height: 85%;
-    background-color: #343a40;
-    padding: 20px;
-}
-
-.ChannelsList {
-    padding: 0px;
-    height: 90%;
-    overflow: scroll;
-    overflow-x: hidden;
-}
-
-.ChannelsElement {
+.ChannelItem {
     color: darkgray;
     cursor: pointer;
     list-style-type: none;
@@ -21,7 +8,7 @@
     }
 }
 
-.ChannelsElement--active {
+.ChannelItem--active {
     color: white; 
 
     .AddUserNameForm {
@@ -29,7 +16,7 @@
     }
 }
 
-.ChannelsName {
+.ChannelItemName {
     font-weight: bold;
     max-width: 180px;
     text-overflow: ellipsis;
@@ -37,17 +24,9 @@
     font-size: 12px;
 }
 
-.ChannelsTopic {
+.ChannelItemTopic {
     font-size: 11px;
     font-style: italics;
     display: block;
     padding-bottom: 10px;
-}
-
-.ChannelsUser {
-    color: white;
-    font-weight: bold;
-    font-size: 11px;
-    margin-bottom: 5px;
-    text-align: center;
 }

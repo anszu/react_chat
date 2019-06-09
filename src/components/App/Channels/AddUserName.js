@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import usePostAPI from '../Hooks/usePostApi';
 import PropTypes from 'prop-types';
+import { AppContext } from '../AppContext';
 import './__styles__/AddUserName.scss';
 
-const AddUserName = ({ UserName, handleUserSubmit }) => {
+const AddUserName = ({ handleUserSubmit }) => {
+    const { UserName } = useContext(AppContext);
     const {
         values,
         handleChange,
@@ -27,7 +29,6 @@ const AddUserName = ({ UserName, handleUserSubmit }) => {
 };
 
 AddUserName.propTypes = {
-    UserName: PropTypes.string,
     handleUserSubmit: PropTypes.func
 };
 

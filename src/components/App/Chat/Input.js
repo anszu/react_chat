@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import usePostAPI from '../Hooks/usePostApi';
-import PropTypes from 'prop-types';
+import { AppContext } from '../AppContext';
 import './__styles__/Input.scss';
 
-const Input = ({ ChannelId, UserName }) => {
+const Input = () => {
+    const { ChannelId, UserName } = useContext(AppContext);
     const {
         values,
         handleChange,
@@ -22,11 +23,6 @@ const Input = ({ ChannelId, UserName }) => {
             </form>
         </div>
     );
-};
-
-Input.propTypes = {
-    ChannelId: PropTypes.number,
-    UserName: PropTypes.string
 };
 
 export default Input;

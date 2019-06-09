@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import useGetAPI from '../Hooks/useGetAPI';
 import * as CONST from '../constants';
+import { AppContext } from '../AppContext';
 import './__styles__/UserList.scss';
 
-const UserList = ({ APIParam }) => {
-    const { values } = useGetAPI(false, `/channels/${APIParam}/users`, CONST.REFRESH_USERLIST);
+const UserList = () => {
+    const { ChannelId } = useContext(AppContext);
+    const { values } = useGetAPI(false, `/channels/${ChannelId}/users`, CONST.REFRESH_USERLIST);
 
     return (
         <div className="UserList">
@@ -18,10 +19,6 @@ const UserList = ({ APIParam }) => {
             }
         </div>
     );
-};
-
-UserList.propTypes = {
-    APIParam: PropTypes.number
 };
 
 export default UserList;

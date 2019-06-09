@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './__styles__/NavigateChannels.scss';
 
 const NavigateChannels = ({ handleClick, data }) => {
-    console.log(data);
     return (
         <>
             { data &&
