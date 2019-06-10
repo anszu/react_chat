@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from 'react';
-import Message from './Message';
 import * as CONST from '../constants';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
+import PropTypes from 'prop-types';
 import './__styles__/Content.scss';
 
-const Content = () => {
+const Content = ({ children }) => {
     const { ChannelId } = useContext(AppContext);
     const { values } = useGetAPI('messageList', `/channels/${ChannelId }/messages`, CONST.REFRESH_MESSAGES);
 
@@ -16,20 +16,13 @@ const Content = () => {
 
     return (
         <div className="Content" id="Content">
-            { values &&
-                <>
-                { values.data && values.data.reverse().map(item => {
-                    return (
-                        <Message key={item.id}
-                            name={item.creator}
-                            timestamp={item.timestamp}
-                            content={item.content}/>
-                    );
-                })}
-                </>
-            }
+            { values && children(values) }
         </div>
     );
+};
+
+Content.propTypes = {
+    children: PropTypes.func
 };
 
 export default Content;

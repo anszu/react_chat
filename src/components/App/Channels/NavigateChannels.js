@@ -20,7 +20,8 @@ const NavigateChannels = ({ handleClick, data }) => {
 };
 
 NavigateChannels.propTypes = {
-    handleClick: PropTypes.func
+    handleClick: PropTypes.func,
+    data: PropTypes.object
 };
 
 export default NavigateChannels;

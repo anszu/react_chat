@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './__styles__/ChannelItem.scss';
 
 const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
-    console.log(ChannelId);
     return (
         <li id={item.id}
             className={
@@ -18,6 +18,13 @@ const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
             {children}
         </li>
     );
+};
+
+ChannelItem.propTypes = {
+    item: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+    ChannelId: PropTypes.number,
+    handleClick: PropTypes.func,
+    children: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
 };
 
 export default ChannelItem;
