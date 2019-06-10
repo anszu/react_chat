@@ -2,6 +2,8 @@
 
 Chatsystem including channel structure, channel creation and post and get setup towards on API. 
 
+![Screenshot](https://github.com/anszu/react_chat/blob/master/screenshots/screen.png?raw=true)
+
 ## Getting Started
 
 1. Make sure Node.js and NPM are [installed](https://nodejs.org/en/download/) 
