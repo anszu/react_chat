@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import usePostAPI from '../Hooks/usePostApi';
+import usePostAPI from '../Hooks/usePostAPI';
 import { AppContext } from '../AppContext';
 import './__styles__/Input.scss';
 

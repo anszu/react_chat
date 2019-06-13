@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import * as CONST from '../constants';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
@@ -7,7 +7,7 @@ import './__styles__/Content.scss';
 
 const Content = ({ children }) => {
     const { ChannelId } = useContext(AppContext);
-    const { values } = useGetAPI('messageList', `/channels/${ChannelId }/messages`, CONST.REFRESH_MESSAGES);
+    const { values } = useGetAPI('messageList', `channels/${ChannelId }/messages`, CONST.REFRESH_MESSAGES);
 
     useEffect(() => {
         const element = document.getElementById("Content");

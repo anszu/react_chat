@@ -1,5 +1,5 @@
 import React from 'react';
-import usePostAPI from '../Hooks/usePostApi';
+import usePostAPI from '../Hooks/usePostAPI';
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
@@ -7,13 +7,20 @@ const AddChannel = () => {
         values,
         handleChange,
         handleSubmit,
-        handleClick
+        handleClick,
+        result
     } = usePostAPI({ name: 'Name', topic: 'Thema' }, 'channels');
+
+    const getError = (result) => {
+        if (result) {
+            return (result === 201 ? 'Angelegt!' : 'Fehler!');
+        }
+    };
 
     return (
         <div className="AddChannel">
             <div className="AddChannelHeader">
-                Neuer Channel:
+                Neuer Channel: { getError(result) }
             </div>
             <form onSubmit={handleSubmit}>
                 <span className="AddChannelForm">

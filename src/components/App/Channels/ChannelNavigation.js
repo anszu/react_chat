@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './__styles__/NavigateChannels.scss';
+import './__styles__/ChannelNavigation.scss';
 
-const NavigateChannels = ({ handleClick, data }) => {
+const ChannelNavigation = ({ handleClick, data }) => {
     return (
         <>
             { data &&
                 (
-                    <div className="NavigateChannels">
+                    <div className="ChannelNavigation">
                         <span onClick={handleClick} id={data.first.href}>{`<<`}</span>
                         {data.prev && (<span onClick={handleClick} id={data.prev.href}>{`<`}</span>)}
                         {data.next && (<span onClick={handleClick} id={data.next.href}>{`>`}</span>)}
@@ -19,10 +19,10 @@ const NavigateChannels = ({ handleClick, data }) => {
     );
 };
 
-NavigateChannels.propTypes = {
+ChannelNavigation.propTypes = {
     handleClick: PropTypes.func,
     data: PropTypes.object
 };
 
-export default NavigateChannels;
+export default ChannelNavigation;
 

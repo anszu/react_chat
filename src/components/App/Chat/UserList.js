@@ -6,7 +6,7 @@ import './__styles__/UserList.scss';
 
 const UserList = () => {
     const { ChannelId } = useContext(AppContext);
-    const { values } = useGetAPI(false, `/channels/${ChannelId}/users`, CONST.REFRESH_USERLIST);
+    const { values } = useGetAPI(false, `channels/${ChannelId}/users`, CONST.REFRESH_USERLIST);
 
     return (
         <div className="UserList">

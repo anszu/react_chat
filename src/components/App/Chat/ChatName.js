@@ -6,7 +6,7 @@ import './__styles__/ChatName.scss';
 
 const ChatName = () => {
     const { ChannelId } = useContext(AppContext);
-    const { values } = useGetAPI(false, `/channels/${ChannelId}`);
+    const { values } = useGetAPI(false, `channels/${ChannelId}`);
 
     return (
         <div className="ChatName">

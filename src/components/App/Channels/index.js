@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AddUserName from './AddUserName';
 import ChannelItem from './ChannelItem';
-import NavigateChannels from './NavigateChannels';
+import ChannelNavigation from './ChannelNavigation';
 import AddChannel from './AddChannel';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
@@ -43,7 +43,7 @@ const Channels = () => {
                 <div className="ChannelsUser">eingeloggt als {UserName}</div>
                 { values &&
                     <>
-                        <NavigateChannels handleClick={handleChannelNav} data={values.links}/>
+                        <ChannelNavigation handleClick={handleChannelNav} data={values.links}/>
                         <ul className="ChannelsList" id="ChannelsList">
                             { values.data.map((item) => {
                                 if (item.name) {
