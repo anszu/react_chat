@@ -9,20 +9,29 @@ import * as CONST from '../constants';
 import './__styles__/Channels.scss';
 
 const Channels = () => {
+    // get channel id, username and changechannelinfo function from context
     const { ChannelId, UserName, changeChannelInfo } = useContext(AppContext);
+
+    // set state for channel id and api param
     const [currentChannel, setCurrentChannel] = useState(ChannelId);
     const [currentAPIParam, setCurrentAPIParam] = useState('channels');
+
+    // call get hook
     const { values } = useGetAPI('channelList', currentAPIParam, CONST.REFRESH_CHANNELS);
 
     // channel was clicked
     const handleClick = (event) => {
-        const target = event.currentTarget;
+        // select all currentyl active chanel items and remove active class
         const elems = document.querySelectorAll(`.ChannelItem.ChannelItem--active`);
-
         elems.forEach((el) => {
             el.classList.remove(`ChannelItem--active`);
         });
+
+        // set active class to currently clicked channel item
+        const target = event.currentTarget;
         target.classList.add(`ChannelItem--active`);
+
+        // update channel id
         setCurrentChannel(parseInt(target.id, 10));
     };
 
@@ -37,6 +46,8 @@ const Channels = () => {
         setCurrentAPIParam(event.target.id);
     };
 
+    // call subcomponents
+    // integrate channel items by mapping through array provided by get hook
     return (
         <div className="Channels">
             <div className="ChannelsBar">

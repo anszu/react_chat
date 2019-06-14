@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './__styles__/ChannelNavigation.scss';
 
 const ChannelNavigation = ({ handleClick, data }) => {
+    // render navigation element
     return (
         <>
             { data &&

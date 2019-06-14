@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './__styles__/ChannelItem.scss';
 
 const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
+    // render channel item and AddUserName component that was provided as child prop
     return (
         <li id={item.id}
             className={
@@ -20,6 +21,7 @@ const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
     );
 };
 
+// prop definitions
 ChannelItem.propTypes = {
     item: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     ChannelId: PropTypes.number,

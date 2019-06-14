@@ -5,9 +5,11 @@ import { AppContext } from '../AppContext';
 import './__styles__/ChatName.scss';
 
 const ChatName = () => {
+    // get channel id from context and call get hook
     const { ChannelId } = useContext(AppContext);
     const { values } = useGetAPI(false, `channels/${ChannelId}`);
 
+    // display chat name and topic
     return (
         <div className="ChatName">
             { values &&
@@ -20,6 +22,7 @@ const ChatName = () => {
     );
 };
 
+// prop definitions
 ChatName.propTypes = {
     APIParam: PropTypes.number
 };

@@ -5,6 +5,7 @@ import { AppContext } from '../AppContext';
 import './__styles__/AddUserName.scss';
 
 const AddUserName = ({ handleUserSubmit }) => {
+    // get username from context and call post api
     const { UserName } = useContext(AppContext);
     const {
         values,
@@ -13,6 +14,7 @@ const AddUserName = ({ handleUserSubmit }) => {
         handleClick
     } = usePostAPI({ creator: UserName }, false, handleUserSubmit);
 
+    // render form
     return (
         <form className="AddUserNameForm" onSubmit={handleSubmitWithCallback}>
             <input
@@ -28,6 +30,7 @@ const AddUserName = ({ handleUserSubmit }) => {
     );
 };
 
+// prop definitions
 AddUserName.propTypes = {
     handleUserSubmit: PropTypes.func
 };

@@ -4,6 +4,7 @@ import { AppContext } from '../AppContext';
 import './__styles__/Input.scss';
 
 const Input = () => {
+    // get channel id and username from context and call post hook
     const { ChannelId, UserName } = useContext(AppContext);
     const {
         values,
@@ -15,6 +16,7 @@ const Input = () => {
     // update creator if necessary
     updateValue(UserName, 'creator');
 
+    // display form
     return (
         <div className="Input">
             <form className="InputForm" onSubmit={handleSubmit}>

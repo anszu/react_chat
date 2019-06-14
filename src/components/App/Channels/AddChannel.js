@@ -3,6 +3,7 @@ import usePostAPI from '../Hooks/usePostAPI';
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
+    // call post hook
     const {
         values,
         handleChange,
@@ -11,12 +12,14 @@ const AddChannel = () => {
         result
     } = usePostAPI({ name: 'Name', topic: 'Thema' }, 'channels');
 
+    // generate error/ success message due to request result state
     const getError = (result) => {
         if (result) {
             return (result === 201 ? 'Angelegt!' : 'Fehler!');
         }
     };
 
+    // render add channel form
     return (
         <div className="AddChannel">
             <div className="AddChannelHeader">

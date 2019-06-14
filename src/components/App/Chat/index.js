@@ -7,6 +7,8 @@ import UserList from './UserList';
 import './__styles__/Chat.scss';
 
 const Chat = () => {
+    // integrate sub components and call message within
+    // a rendering prop
     return (
         <div className="Chat">
             <span className="ChatHeader">
@@ -16,13 +18,10 @@ const Chat = () => {
             <Content>
                 { (data) => (
                     data.map((item, index) => (
-                        <>
-                        {index}
                         <Message key={item.id}
                             name={item.creator}
                             timestamp={item.timestamp}
                             content={item.content}/>
-                        </>
                     )))
                 }
             </Content>

@@ -5,9 +5,11 @@ import { AppContext } from '../AppContext';
 import './__styles__/UserList.scss';
 
 const UserList = () => {
+    // get channel id from context and call get hook
     const { ChannelId } = useContext(AppContext);
     const { values } = useGetAPI(false, `channels/${ChannelId}/users`, CONST.REFRESH_USERLIST);
 
+    // map trough user resultset provided by hook
     return (
         <div className="UserList">
             { values &&
