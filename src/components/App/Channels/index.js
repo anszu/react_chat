@@ -11,7 +11,7 @@ import './__styles__/Channels.scss';
 const Channels = () => {
     const { ChannelId, UserName, changeChannelInfo } = useContext(AppContext);
     const [currentChannel, setCurrentChannel] = useState(ChannelId);
-    const [currentAPIParam, setCurrentAPIParam] = useState('/channels');
+    const [currentAPIParam, setCurrentAPIParam] = useState('channels');
     const { values } = useGetAPI('channelList', currentAPIParam, CONST.REFRESH_CHANNELS);
 
     // channel was clicked

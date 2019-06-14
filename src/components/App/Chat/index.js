@@ -14,12 +14,15 @@ const Chat = () => {
                 <ChatName/>
             </span>
             <Content>
-                { (values) => (
-                    values.data && values.data.reverse().map(item => (
+                { (data) => (
+                    data.map((item, index) => (
+                        <>
+                        {index}
                         <Message key={item.id}
                             name={item.creator}
                             timestamp={item.timestamp}
                             content={item.content}/>
+                        </>
                     )))
                 }
             </Content>

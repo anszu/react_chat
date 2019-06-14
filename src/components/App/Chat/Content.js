@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as CONST from '../constants';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
@@ -7,16 +7,34 @@ import './__styles__/Content.scss';
 
 const Content = ({ children }) => {
     const { ChannelId } = useContext(AppContext);
-    const { values } = useGetAPI('messageList', `channels/${ChannelId }/messages`, CONST.REFRESH_MESSAGES);
+    const [TimestampParam, setTimestampParam] = useState('');
+    const [sortedValues, setSortedValues] = useState([]);
+    const { values } = useGetAPI('messageList', `channels/${ChannelId}/messages${TimestampParam}`, CONST.REFRESH_MESSAGES);
+
+
+    const sortValues = () => {
+        let arr = [];
+        if (values.data) {
+            values.data.forEach(element => {
+                arr[element.id] = element;
+            });
+        }
+        setSortedValues(arr.filter((el) => (el != null)));
+    };
 
     useEffect(() => {
-        const element = document.getElementById("Content");
-        element.scrollTop = element.scrollHeight;
-    });
+        if (values) {
+            sortValues();
+            if (!TimestampParam && sortedValues.length > 0) {
+                let arr = sortedValues;
+                setTimestampParam(`?lastSeenTimestamp=${encodeURI(arr.shift().timestamp)}`);
+            }
+        }
+    }, [values]);
 
     return (
         <div className="Content" id="Content">
-            { values && children(values) }
+            { sortedValues && children(sortedValues) }
         </div>
     );
 };
