@@ -9,7 +9,8 @@ const Content = ({ children }) => {
     const { ChannelId } = useContext(AppContext);
     const [TimestampParam, setTimestampParam] = useState('');
     const [sortedValues, setSortedValues] = useState([]);
-    const { values } = useGetAPI('messageList', `channels/${ChannelId}/messages${TimestampParam}`, CONST.REFRESH_MESSAGES);
+    const { values } = useGetAPI('messageList',
+        `channels/${ChannelId}/messages${TimestampParam}`, CONST.REFRESH_MESSAGES);
 
 
     const sortValues = () => {
