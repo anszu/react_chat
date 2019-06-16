@@ -6,6 +6,7 @@ import './__styles__/Input.scss';
 const Input = () => {
     // get channel id and username from context and call post hook
     const { ChannelId, UserName } = useContext(AppContext);
+
     const {
         values,
         handleChange,
@@ -21,7 +22,12 @@ const Input = () => {
         <div className="Input">
             <form className="InputForm" onSubmit={handleSubmit}>
                 <input className="form-control" name="content" value={values.content} onChange={handleChange}/>
-                <button type="submit" className="InputButton btn btn-light">Absenden</button>
+                <button
+                    type="submit"
+                    className="InputButton btn btn-light"
+                    disabled={values.content.trim() === ''}>
+                        Absenden
+                </button>
             </form>
         </div>
     );

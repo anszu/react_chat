@@ -2,7 +2,7 @@ import React from 'react';
 import Content from './Content';
 import Input from './Input';
 import Message from './Message';
-import ChatName from './ChatName';
+import ChannelName from './ChannelName';
 import UserList from './UserList';
 import './__styles__/Chat.scss';
 
@@ -13,7 +13,7 @@ const Chat = () => {
         <div className="Chat">
             <span className="ChatHeader">
                 <UserList/>
-                <ChatName/>
+                <ChannelName/>
             </span>
             <Content>
                 { (data) => (

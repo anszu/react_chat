@@ -21,7 +21,7 @@ const Channels = () => {
 
     // channel was clicked
     const handleClick = (event) => {
-        // select all currentyl active chanel items and remove active class
+        // select all currently active chanel items and remove active class
         const elems = document.querySelectorAll(`.ChannelItem.ChannelItem--active`);
         elems.forEach((el) => {
             el.classList.remove(`ChannelItem--active`);
@@ -37,6 +37,7 @@ const Channels = () => {
 
     // new username was submitted
     const handleSubmit = (values) => {
+        if (!values.creator) { values.creator = UserName; }
         changeChannelInfo(currentChannel, values.creator);
     };
 

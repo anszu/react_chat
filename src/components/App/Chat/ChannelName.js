@@ -2,20 +2,20 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
-import './__styles__/ChatName.scss';
+import './__styles__/ChannelName.scss';
 
-const ChatName = () => {
+const ChannelName = () => {
     // get channel id from context and call get hook
     const { ChannelId } = useContext(AppContext);
     const { values } = useGetAPI(false, `channels/${ChannelId}`);
 
     // display chat name and topic
     return (
-        <div className="ChatName">
+        <div className="ChannelName">
             { values &&
                 <>
-                    <span className="ChatNameName">{values.name}</span>
-                    <span className="ChatNameTopic">{values.topic}</span>
+                    <span className="ChannelNameTitle">{values.name}</span>
+                    <span className="ChannelNameTopic">{values.topic}</span>
                 </>
             }
         </div>
@@ -23,8 +23,8 @@ const ChatName = () => {
 };
 
 // prop definitions
-ChatName.propTypes = {
+ChannelName.propTypes = {
     APIParam: PropTypes.number
 };
 
-export default ChatName;
+export default ChannelName;
