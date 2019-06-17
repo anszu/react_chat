@@ -20,6 +20,7 @@ const ChannelNavigation = ({ handleClick, data }) => {
     );
 };
 
+// prop definitions
 ChannelNavigation.propTypes = {
     handleClick: PropTypes.func,
     data: PropTypes.object
