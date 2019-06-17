@@ -13,3 +13,8 @@ Chatsystem including channel structure, channel creation and post and get setup 
 5. Edit [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with API settings
 6. Run with ```npm run start```
 
+## Concept
+
+This chat is using custom hooks for API requests and React Context for state management.
+
+![Concept](https://github.com/anszu/react_chat/blob/master/screenshots/concept.png)
