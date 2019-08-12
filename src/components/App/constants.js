@@ -1,4 +1,4 @@
-// api settings
+// API Settings
 export const API_POST_URL = '';
 export const API_GET_URL = '';
 export const API_TOKEN = {};
