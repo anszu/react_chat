@@ -45,8 +45,8 @@ export const API_PARAM_USERS = 'users';
 
 // API Items
 // name of expected API Objects
-export const API_ITEM_MESSAGES = 'messageList';
-export const API_ITEM_CHANNELS = 'channelList';
+export const API_ITEM_MESSAGES = ''; // eg. messageList
+export const API_ITEM_CHANNELS = ''; // eg. channelList
 
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
