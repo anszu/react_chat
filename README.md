@@ -19,7 +19,31 @@ This chat is using custom hooks for API requests and React Context for state man
 
 ![Concept](https://github.com/anszu/react_chat/blob/master/screenshots/concept.png)
 
-## Context and configuration
+## Configuration
+
+[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It has to be filled to use with an API. 
+
+```javascript
+// api settings
+export const API_POST_URL = '';
+export const API_GET_URL = '';
+export const API_TOKEN = {};
+export const API_HEADERS = {
+    'Content-Type': 'application/json',
+    ...API_TOKEN
+};
+
+// refresh settings
+export const REFRESH_CHANNELS = 10000;
+export const REFRESH_MESSAGES = 1000;
+export const REFRESH_USERLIST = 1000;
+```
+
+## Context
+
+React Context is used to transfer state between components.
+
+
 
 ## Hooks
 
