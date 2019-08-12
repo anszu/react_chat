@@ -73,14 +73,14 @@ Is controlling GET Requests for all calling components.
 ```javascript
 const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false)
 
-// optional Item/ Object that will be requested from the API 
-// (String) by Default the whole resultset is returned
+// (Optional)(String) Item/ Object that will be requested from the API 
+// by Default the whole resultset is returned
 APIItem 
 
-// (String) path to API ressource
+// (Optional)(String) path to API ressource
 APIParam
 
-// (String) if the GET call should be repeated, set the interval
+// (Optional)(String) if the GET call should be repeated, set the interval
 RefreshTime
 ```
 
@@ -133,13 +133,13 @@ Is controlling POST Requests for all calling components. Also controlls forms th
 ```javascript
 const usePostAPI = (presetValues, ApiParam = '', callbackSubmit = false)
 
-// (Object) optional object for prefilling a form
+// (Optional)(Object) optional object for prefilling a form
 presetValues
 
-// (String) path to API ressource
+// (Optional)(String) path to API ressource
 APIParam
 
-// (Function) if there is a non-default action required after posting, it can be set here
+// (Optional)(Function) if there is a non-default action required after posting, it can be set here
 callbackSubmit
 ```
 
