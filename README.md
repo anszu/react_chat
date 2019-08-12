@@ -27,7 +27,7 @@ All requests towards the API are done via Hooks.
 
 ### useGetAPI
 
-***[useGetAPI.js]***(https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/useGetAPI.js)  
+[***useGetAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/useGetAPI.js)  
 Is controlling GET Requests for all calling components.
 
 **Arguments:**
@@ -87,7 +87,7 @@ values
 
 ### usePostAPI
 
-***[usePostAPI.js]***(https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/usePostAPI.js)  
+[***usePostAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/usePostAPI.js)  
 Is controlling POST Requests for all calling components. Also controlls forms that are used for posting.
 
 **Arguments:**
