@@ -23,8 +23,10 @@ This chat is using custom hooks for API requests and React Context for state man
 
 [**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It has to be filled to use with an API. 
 
+Please be aware there is an expected structure for the REST API when using the API Parameters. If your API doesn't match this structure you have to adapt the calling components.
+
 ```javascript
-// api settings
+// API Settings
 export const API_POST_URL = '';
 export const API_GET_URL = '';
 export const API_TOKEN = {};
@@ -32,6 +34,19 @@ export const API_HEADERS = {
     'Content-Type': 'application/json',
     ...API_TOKEN
 };
+
+// API Params
+// expected format: API_PARAM_CHANNELS/ChannelId
+export const API_PARAM_CHANNELS = 'channels';
+// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_MESSAGES
+export const API_PARAM_MESSAGES = 'messages';
+// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_USERS
+export const API_PARAM_USERS = 'users';
+
+// API Items
+// name of expected API Objects
+export const API_ITEM_MESSAGES = 'messageList';
+export const API_ITEM_CHANNELS = 'channelList';
 
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
