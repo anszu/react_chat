@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import usePostAPI from '../Hooks/usePostAPI';
 import { AppContext } from '../AppContext';
+import * as CONST from '../constants';
 import './__styles__/Input.scss';
 
 const Input = () => {
@@ -12,7 +13,8 @@ const Input = () => {
         handleChange,
         handleSubmit,
         updateValue
-    } = usePostAPI({ content: '', creator: UserName }, `/channels/${ChannelId}/messages`);
+    } = usePostAPI({ content: '', creator: UserName },
+        `/${CONST.API_PARAM_CHANNELS}/${ChannelId}/${CONST.API_PARAM_MESSAGES}`);
 
     // update creator if necessary
     updateValue(UserName, 'creator');

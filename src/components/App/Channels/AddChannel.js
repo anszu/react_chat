@@ -1,5 +1,6 @@
 import React from 'react';
 import usePostAPI from '../Hooks/usePostAPI';
+import * as CONST from '../constants';
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
@@ -10,7 +11,7 @@ const AddChannel = () => {
         handleSubmit,
         handleClick,
         result
-    } = usePostAPI({ name: 'Name', topic: 'Thema' }, 'channels');
+    } = usePostAPI({ name: 'Name', topic: 'Thema' }, CONST.API_PARAM_CHANNELS);
 
     // generate error/ success message due to request result state
     const getError = (result) => {

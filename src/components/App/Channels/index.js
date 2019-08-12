@@ -14,10 +14,10 @@ const Channels = () => {
 
     // set state for channel id and api param
     const [currentChannel, setCurrentChannel] = useState(ChannelId);
-    const [currentAPIParam, setCurrentAPIParam] = useState('channels');
+    const [currentAPIParam, setCurrentAPIParam] = useState(CONST.API_PARAM_CHANNELS);
 
     // call get hook
-    const { values } = useGetAPI('channelList', currentAPIParam, CONST.REFRESH_CHANNELS);
+    const { values } = useGetAPI(CONST.API_ITEM_CHANNELS, currentAPIParam, CONST.REFRESH_CHANNELS);
 
     // channel was clicked
     const handleClick = (event) => {

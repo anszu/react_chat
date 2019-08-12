@@ -14,8 +14,9 @@ const Content = ({ children }) => {
     const [sortedValues, setSortedValues] = useState([]);
 
     // call get hook
-    const { values } = useGetAPI('messageList',
-        `channels/${ChannelId}/messages${TimestampParam}`, CONST.REFRESH_MESSAGES);
+    const { values } = useGetAPI(CONST.API_ITEM_MESSAGES,
+        `${CONST.API_PARAM_CHANNELS}/${ChannelId}/${CONST.API_PARAM_MESSAGES}${TimestampParam}`,
+        CONST.REFRESH_MESSAGES);
 
     // sort values by their id's to always get the same order
     // this is due to a API malfunction, providing values in different orders
