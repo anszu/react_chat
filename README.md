@@ -115,7 +115,6 @@ useEffect(() => {
     if (interval) { clearInterval(interval); }
   };
 }, [APIParam]);
-};
 ```
 
 ***Return values:***
