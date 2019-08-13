@@ -259,12 +259,12 @@ For better readability the implemented React components are using a strict top d
 
 There are no cross imports.
 
-**Component/ Import overview:**
+**Import Overview:**
 
 ```
-App  
+App
     --- Channels  
-        --- AddChannel  
+        --- AddChannel
         --- ChannelItem  
         --- AddUserName
         --- ChannelNavigation
@@ -275,7 +275,23 @@ App
         --- Input
         --- ChannelName
         --- UserList
-```
+ ```
+ 
+ **Component Overview:**
+
+[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)
+--- Channels  
+------ AddChannel
+------ ChannelItem  
+------ AddUserName
+------ ChannelNavigation
+
+--- Chat
+------ Content
+------ Message
+------ Input
+------ ChannelName
+------ UserList
 
 ## Styling
 
