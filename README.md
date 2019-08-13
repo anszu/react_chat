@@ -58,7 +58,53 @@ export const REFRESH_USERLIST = 1000;
 
 React Context is used to transfer state between components.
 
+Context objects are created in [src/components/App/AppContext.js](https://github.com/anszu/react_chat/edit/master/src/components/App/AppContext.js):
+```javascript
+// create context objects
+export const AppContext = React.createContext({});
+export const AppContextProvider = AppContext.Provider;
+export const AppContextConsumer = AppContext.Consumer;
+```
 
+The ```App``` component is importing ```AppContextProvider``` to pass down ```ChannelId```, ```UserName```and ```changeChannelInfo()``` to it's sub components.
+
+```javascript
+import { AppContextProvider } from './AppContext';
+
+const App = () => {
+    // define states
+    const [ChannelId, setChannelId] = useState(1);
+    const [UserName, setUserName] = useState('guest');
+
+    // reset state for channel id and username
+    const changeChannelInfo = (ChannelId, UserName) => {
+        ...
+    };
+
+    // call subcomponents with context provider
+    return (
+        <div className="App">
+            <AppContextProvider value={{
+                ChannelId: ChannelId,
+                UserName: UserName,
+                changeChannelInfo: changeChannelInfo }}>
+                ...
+            </AppContextProvider>
+        </div>
+    );
+};
+```
+
+Context data is accessed by the sub components via the useContext Hook.  
+Example usage in [src/components/App/Chat/Input.js](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Input.js):
+
+```javascript
+const Input = () => {
+    // get channel id and username from context and call post hook
+    const { ChannelId, UserName } = useContext(AppContext);
+    ...
+}
+```
 
 ## Hooks
 
