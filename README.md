@@ -279,19 +279,19 @@ App
  
  **Component Overview:**
 
-[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)
---- Channels  
------- AddChannel
------- ChannelItem  
------- AddUserName
------- ChannelNavigation
+[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)    
+--- [Channels](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/index.js)   
+------ [AddChannel](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddChannel.js)  
+------ [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)   
+------ [AddUserName](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddUserName.js)  
+------ [ChannelNavigation](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelNavigation.js)  
 
---- Chat
------- Content
------- Message
------- Input
------- ChannelName
------- UserList
+--- [Chat](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/index.js)  
+------ [Content](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Content.js)  
+------ [Message](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Message.js)  
+------ [Input](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Input.js)  
+------ [ChannelName](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/ChannelName.js)  
+------ [UserList](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/UserList.js)  
 
 ## Styling
 
