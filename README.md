@@ -259,21 +259,24 @@ For better readability the implemented React components are using a strict top d
 
 There are no cross imports.
 
-### App
+**Component/ Import overview:**
 
-### Channels
-#### AddChannel
-#### ChannelItem
-#### AddUserName
-#### ChannelNavigation
+```
+App  
+    --- Channels  
+        --- AddChannel  
+        --- ChannelItem  
+        --- AddUserName
+        --- ChannelNavigation
 
-### Chat
-#### Content
-#### Message
-#### Input
-#### ChannelName
-#### UserList
+    --- Chat
+        --- Content
+        --- Message
+        --- Input
+        --- ChannelName
+        --- UserList
+```
 
 ## Styling
 
-
+Styling is done via simple SCSS imports and should be changed to JSS usage in the future. SCSS files are stored in a _styles_ folder next to the compontents.
