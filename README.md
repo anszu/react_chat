@@ -259,27 +259,10 @@ For better readability the implemented React components are using a strict top d
 
 There are no cross imports.
 
-**Import Overview:**
-
-```
-App
-    --- Channels  
-        --- AddChannel
-        --- ChannelItem  
-        --- AddUserName
-        --- ChannelNavigation
-
-    --- Chat
-        --- Content
-        --- Message
-        --- Input
-        --- ChannelName
-        --- UserList
- ```
- 
  **Component Overview:**
 
-[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)    
+[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)  
+
 --- [Channels](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/index.js)   
 ------ [AddChannel](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddChannel.js)  
 ------ [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)   
