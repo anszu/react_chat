@@ -10,7 +10,7 @@ Chatsystem including channel structure, channel creation and post and get setup 
 2. Make sure Git is [installed](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 3. Clone Repo with ```git clone git@github.com:anszu/react_chat.git```
 4. Install packages with ```npm install```
-5. Edit [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with API settings
+5. Edit [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with API settings (see [here](https://github.com/anszu/react_chat#configuration))
 6. Run with ```npm run start```
 
 ## Concept
@@ -23,8 +23,10 @@ This chat is using custom hooks for API requests and React Context for state man
 
 [**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It has to be filled to use with an API. 
 
+Please be aware there is an expected structure for the REST API when using the API Parameters. If your API doesn't match this structure you have to adapt the calling components.
+
 ```javascript
-// api settings
+// API Settings
 export const API_POST_URL = '';
 export const API_GET_URL = '';
 export const API_TOKEN = {};
@@ -32,6 +34,19 @@ export const API_HEADERS = {
     'Content-Type': 'application/json',
     ...API_TOKEN
 };
+
+// API Params
+// expected format: API_PARAM_CHANNELS/ChannelId
+export const API_PARAM_CHANNELS = 'channels';
+// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_MESSAGES
+export const API_PARAM_MESSAGES = 'messages';
+// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_USERS
+export const API_PARAM_USERS = 'users';
+
+// API Items
+// name of expected API Objects
+export const API_ITEM_MESSAGES = ''; // eg. messageList
+export const API_ITEM_CHANNELS = ''; // eg. channelList
 
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
@@ -43,7 +58,53 @@ export const REFRESH_USERLIST = 1000;
 
 React Context is used to transfer state between components.
 
+Context objects are created in [src/components/App/AppContext.js](https://github.com/anszu/react_chat/edit/master/src/components/App/AppContext.js):
+```javascript
+// create context objects
+export const AppContext = React.createContext({});
+export const AppContextProvider = AppContext.Provider;
+export const AppContextConsumer = AppContext.Consumer;
+```
 
+The ```App``` component is importing ```AppContextProvider``` to pass down ```ChannelId```, ```UserName```and ```changeChannelInfo()``` to it's sub components.
+
+```javascript
+import { AppContextProvider } from './AppContext';
+
+const App = () => {
+    // define states
+    const [ChannelId, setChannelId] = useState(1);
+    const [UserName, setUserName] = useState('guest');
+
+    // reset state for channel id and username
+    const changeChannelInfo = (ChannelId, UserName) => {
+        ...
+    };
+
+    // call subcomponents with context provider
+    return (
+        <div className="App">
+            <AppContextProvider value={{
+                ChannelId: ChannelId,
+                UserName: UserName,
+                changeChannelInfo: changeChannelInfo }}>
+                ...
+            </AppContextProvider>
+        </div>
+    );
+};
+```
+
+Context data is accessed by the sub components via the useContext Hook.  
+Example usage in [src/components/App/Chat/Input.js](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Input.js):
+
+```javascript
+const Input = () => {
+    // get channel id and username from context and call post hook
+    const { ChannelId, UserName } = useContext(AppContext);
+    ...
+}
+```
 
 ## Hooks
 
@@ -58,14 +119,14 @@ Is controlling GET Requests for all calling components.
 ```javascript
 const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false)
 
-// optional Item/ Object that will be requested from the API 
-// (String) by Default the whole resultset is returned
+// (Optional)(String) Item/ Object that will be requested from the API 
+// by Default the whole resultset is returned
 APIItem 
 
-// (String) path to API ressource
+// (Optional)(String) path to API ressource
 APIParam
 
-// (String) if the GET call should be repeated, set the interval
+// (Optional)(String) if the GET call should be repeated, set the interval
 RefreshTime
 ```
 
@@ -100,7 +161,6 @@ useEffect(() => {
     if (interval) { clearInterval(interval); }
   };
 }, [APIParam]);
-};
 ```
 
 ***Return values:***
@@ -118,13 +178,13 @@ Is controlling POST Requests for all calling components. Also controlls forms th
 ```javascript
 const usePostAPI = (presetValues, ApiParam = '', callbackSubmit = false)
 
-// (Object) optional object for prefilling a form
+// (Optional)(Object) optional object for prefilling a form
 presetValues
 
-// (String) path to API ressource
+// (Optional)(String) path to API ressource
 APIParam
 
-// (Function) if there is a non-default action required after posting, it can be set here
+// (Optional)(Function) if there is a non-default action required after posting, it can be set here
 callbackSubmit
 ```
 
@@ -199,21 +259,23 @@ For better readability the implemented React components are using a strict top d
 
 There are no cross imports.
 
-### App
+ **Component Overview:**
 
-### Channels
-#### AddChannel
-#### ChannelItem
-#### AddUserName
-#### ChannelNavigation
+[App](https://github.com/anszu/react_chat/blob/master/src/components/App/index.js)  
 
-### Chat
-#### Content
-#### Message
-#### Input
-#### ChannelName
-#### UserList
+--- [Channels](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/index.js)   
+------ [AddChannel](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddChannel.js)  
+------ [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)   
+------ [AddUserName](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddUserName.js)  
+------ [ChannelNavigation](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelNavigation.js)  
+
+--- [Chat](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/index.js)  
+------ [Content](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Content.js)  
+------ [Message](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Message.js)  
+------ [Input](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Input.js)  
+------ [ChannelName](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/ChannelName.js)  
+------ [UserList](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/UserList.js)  
 
 ## Styling
 
-
+Styling is done via simple SCSS imports and should be changed to JSS usage in the future. SCSS files are stored in a _styles_ folder next to the compontents.
