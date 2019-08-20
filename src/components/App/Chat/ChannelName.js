@@ -8,7 +8,7 @@ import './__styles__/ChannelName.scss';
 const ChannelName = () => {
     // get channel id from context and call get hook
     const { ChannelId } = useContext(AppContext);
-    const { values } = useGetAPI(false, `${CONST.API_PARAM_CHANNELS}/${ChannelId}`);
+    const { values } = useGetAPI(`${CONST.API_PARAM_CHANNELS}/${ChannelId}`);
 
     // display chat name and topic
     return (

@@ -1,0 +1,49 @@
+{
+  "channels": [
+    {
+      "id": 1,
+      "name": "General",
+      "topic": "general topics"
+    },
+    {
+      "id": 2,
+      "name": "TechTalk",
+      "topic": "technical topics"
+    },
+    {
+      "id": 3,
+      "name": "Smalltalk",
+      "topic": "everything else"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "creator": "NewUser",
+      "timestamp": "2019-04-12T09:30:49.560247Z",
+      "content": "Hi guys",
+      "channelId": "1"
+    },
+    {
+      "id": 2,
+      "creator": "guest",
+      "timestamp": "2019-04-12T09:30:49.560247Z",
+      "content": "Hello!",
+      "channelId": "1"
+    },
+    {
+      "content": "Nicht allzu gut!",
+      "creator": "guest",
+      "timestamp": "2019-8-20 16:22:59",
+      "channelId": "1",
+      "id": 8
+    },
+    {
+      "content": "hallo leute!",
+      "creator": "guest",
+      "timestamp": "2019-8-20 16:26:45",
+      "channelId": "2",
+      "id": 9
+    }
+  ]
+}

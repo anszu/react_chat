@@ -14,10 +14,17 @@ const Input = () => {
         handleSubmit,
         updateValue
     } = usePostAPI({ content: '', creator: UserName },
-        `/${CONST.API_PARAM_CHANNELS}/${ChannelId}/${CONST.API_PARAM_MESSAGES}`);
+        `${CONST.API_PARAM_CHANNELS}/${ChannelId}/${CONST.API_PARAM_MESSAGES}`);
+
+    const getCurrentDate = () => {
+        const today = new Date();
+        return (`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}${' '
+        }${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`);
+    };
 
     // update creator if necessary
     updateValue(UserName, 'creator');
+    updateValue(getCurrentDate(), 'timestamp');
 
     // display form
     return (

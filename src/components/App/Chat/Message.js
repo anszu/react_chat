@@ -15,7 +15,7 @@ const Message = ({ name, timestamp, content }) => {
             addZero(messageDate.getMinutes())}:${
             addZero(messageDate.getSeconds())} Uhr am ${
             addZero(messageDate.getDate())}.${
-            addZero(messageDate.getMonth())}.${
+            addZero(messageDate.getMonth() + 1)}.${
             messageDate.getFullYear()}`);
     };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as CONST from '../constants';
 
-const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
+const useGetAPI = (APIParam = '', RefreshTime = false) => {
     // set state for resultset values
     const [values, setValues] = useState();
 
@@ -15,14 +15,7 @@ const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false) => {
         })
             .then(res => res.json())
             .then((data) => {
-                // ift there's an embedded resultset and an API Item to return
-                // was defined, return it
-                // else return the entire data object
-                if (data._embedded && APIItem) {
-                    setValues({ data: data._embedded[APIItem], links: data._links });
-                } else {
-                    setValues(data);
-                }
+                setValues(data);
             });
     };
 

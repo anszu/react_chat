@@ -17,7 +17,7 @@ const Channels = () => {
     const [currentAPIParam, setCurrentAPIParam] = useState(CONST.API_PARAM_CHANNELS);
 
     // call get hook
-    const { values } = useGetAPI(CONST.API_ITEM_CHANNELS, currentAPIParam, CONST.REFRESH_CHANNELS);
+    const { values } = useGetAPI(currentAPIParam, CONST.REFRESH_CHANNELS);
 
     // channel was clicked
     const handleClick = (event) => {
@@ -57,7 +57,7 @@ const Channels = () => {
                     <>
                         <ChannelNavigation handleClick={handleChannelNav} data={values.links}/>
                         <ul className="ChannelsList" id="ChannelsList">
-                            { values.data.map((item) => {
+                            { values.map((item) => {
                                 if (item.name) {
                                     return (
                                         <ChannelItem

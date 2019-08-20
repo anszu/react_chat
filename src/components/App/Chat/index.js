@@ -3,7 +3,6 @@ import Content from './Content';
 import Input from './Input';
 import Message from './Message';
 import ChannelName from './ChannelName';
-import UserList from './UserList';
 import './__styles__/Chat.scss';
 
 const Chat = () => {
@@ -12,7 +11,6 @@ const Chat = () => {
     return (
         <div className="Chat">
             <span className="ChatHeader">
-                <UserList/>
                 <ChannelName/>
             </span>
             <Content>

@@ -1,6 +1,6 @@
 // API Settings
-export const API_POST_URL = '';
-export const API_GET_URL = '';
+export const API_POST_URL = 'http://localhost:3000';
+export const API_GET_URL = 'http://localhost:3000';
 export const API_TOKEN = {};
 export const API_HEADERS = {
     'Content-Type': 'application/json',
@@ -12,13 +12,6 @@ export const API_HEADERS = {
 export const API_PARAM_CHANNELS = 'channels';
 // expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_MESSAGES
 export const API_PARAM_MESSAGES = 'messages';
-// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_USERS
-export const API_PARAM_USERS = 'users';
-
-// API Items
-// name of expected API Objects
-export const API_ITEM_MESSAGES = ''; // eg. messageList
-export const API_ITEM_CHANNELS = ''; // eg. channelList
 
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
