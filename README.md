@@ -8,10 +8,12 @@ Chatsystem including channel structure, channel creation and post and get setup 
 
 1. Make sure Node.js and NPM are [installed](https://nodejs.org/en/download/) 
 2. Make sure Git is [installed](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-3. Clone Repo with ```git clone git@github.com:anszu/react_chat.git```
-4. Install packages with ```npm install```
-5. Edit [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with API settings (see [here](https://github.com/anszu/react_chat#configuration))
-6. Run with ```npm run start```
+3. Make sure a [json-server](https://github.com/typicode/json-server) is installed, to simulate a REST API
+4. Clone Repo with ```git clone git@github.com:anszu/react_chat.git```
+5. Install packages with ```npm install```
+6. Go to the root folder of this repository and run ```json-server --watch db.json``` to start the REST API
+7. Run with ```npm run start```
+8. If you want you can modify [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with alternative API settings if you would like to use a real API (see [here](https://github.com/anszu/react_chat#configuration)). If you are running the Json Server at another port than 3000, you also have to modify the settings.
 
 ## Concept
 
@@ -19,16 +21,19 @@ This chat is using custom hooks for API requests and React Context for state man
 
 ![Concept](https://github.com/anszu/react_chat/blob/master/screenshots/concept.png)
 
+* Please note that the UserList component got deleted since moving to a fake API solution
+
 ## Configuration
 
-[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It has to be filled to use with an API. 
+[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It was prefilled to be used with a faked REST API. 
+You can find the data for this API in [db.json](https://github.com/anszu/react_chat/blob/master/db.json).
 
 Please be aware there is an expected structure for the REST API when using the API Parameters. If your API doesn't match this structure you have to adapt the calling components.
 
 ```javascript
 // API Settings
-export const API_POST_URL = '';
-export const API_GET_URL = '';
+export const API_POST_URL = 'http://localhost:3000';
+export const API_GET_URL = 'http://localhost:3000';
 export const API_TOKEN = {};
 export const API_HEADERS = {
     'Content-Type': 'application/json',
@@ -40,13 +45,6 @@ export const API_HEADERS = {
 export const API_PARAM_CHANNELS = 'channels';
 // expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_MESSAGES
 export const API_PARAM_MESSAGES = 'messages';
-// expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_USERS
-export const API_PARAM_USERS = 'users';
-
-// API Items
-// name of expected API Objects
-export const API_ITEM_MESSAGES = ''; // eg. messageList
-export const API_ITEM_CHANNELS = ''; // eg. channelList
 
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
@@ -117,11 +115,7 @@ Is controlling GET Requests for all calling components.
 
 **Arguments:**
 ```javascript
-const useGetAPI = (APIItem = '', APIParam = '', RefreshTime = false)
-
-// (Optional)(String) Item/ Object that will be requested from the API 
-// by Default the whole resultset is returned
-APIItem 
+const useGetAPI = (APIParam = '', RefreshTime = false)
 
 // (Optional)(String) path to API ressource
 APIParam
@@ -255,7 +249,7 @@ result
 For better readability the implemented React components are using a strict top down import hierarchy, meaning: 
 
 ```App``` imports ```Channels``` imports ```AddChannel/ ChannelItem/ AddUserName/ ChannelNavigation```  
-```App``` imports ```Chat``` imports ```Content/ Message/ Input/ UserList```
+```App``` imports ```Chat``` imports ```Content/ Message/ Input```
 
 There are no cross imports.
 
@@ -273,8 +267,7 @@ There are no cross imports.
 ------ [Content](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Content.js)  
 ------ [Message](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Message.js)  
 ------ [Input](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Input.js)  
------- [ChannelName](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/ChannelName.js)  
------- [UserList](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/UserList.js)  
+------ [ChannelName](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/ChannelName.js)
 
 ## Styling
 
