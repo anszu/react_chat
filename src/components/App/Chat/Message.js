@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './__styles__/Message.scss';
 
 const Message = ({ name, timestamp, content }) => {

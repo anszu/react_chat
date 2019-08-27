@@ -1,6 +1,8 @@
 import React from 'react';
+
 import usePostAPI from '../Hooks/usePostAPI';
 import * as CONST from '../constants';
+
 import './__styles__/AddChannel.scss';
 
 const AddChannel = () => {
@@ -11,12 +13,13 @@ const AddChannel = () => {
         handleSubmit,
         handleClick,
         result
-    } = usePostAPI({ name: 'Name', topic: 'Thema' }, CONST.API_PARAM_CHANNELS);
+    } = usePostAPI(CONST.API_PARAM_CHANNELS,
+        { name: CONST.NEW_CHANNEL_NAME_INPUT, topic: CONST.NEW_CHANNEL_TOPIC_INPUT });
 
     // generate error/ success message due to request result state
     const getError = (result) => {
         if (result) {
-            return (result === 201 ? 'Angelegt!' : 'Fehler!');
+            return (result === 201 ? CONST.NEW_CHANNEL_SUCCESS : CONST.NEW_CHANNEL_ERROR);
         }
     };
 
@@ -24,7 +27,7 @@ const AddChannel = () => {
     return (
         <div className="AddChannel">
             <div className="AddChannelHeader">
-                Neuer Channel: { getError(result) }
+                {CONST.NEW_CHANNEL_INPUT}{ getError(result) }
             </div>
             <form onSubmit={handleSubmit}>
                 <span className="AddChannelForm">
@@ -46,7 +49,13 @@ const AddChannel = () => {
                         onClick={handleClick}
                         required
                     />
-                    <button type="submit" className="AddChannelButton btn btn-dark">+</button>
+                    <button type="submit"
+                        className="AddChannelButton btn btn-dark"
+                        disabled={values.topic.trim() === '' || values.name.trim() === '' ||
+                            values.topic === CONST.NEW_CHANNEL_TOPIC_INPUT ||
+                            values.name === CONST.NEW_CHANNEL_NAME_INPUT}>
+                        +
+                    </button>
                 </span>
             </form>
         </div>

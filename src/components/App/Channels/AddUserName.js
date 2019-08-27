@@ -1,38 +1,48 @@
 import React, { useContext } from 'react';
+
 import usePostAPI from '../Hooks/usePostAPI';
-import PropTypes from 'prop-types';
 import { AppContext } from '../AppContext';
+import * as CONST from '../constants';
+
 import './__styles__/AddUserName.scss';
 
-const AddUserName = ({ handleUserSubmit }) => {
-    // get username from context and call post api
-    const { UserName } = useContext(AppContext);
+const AddUserName = () => {
+    // get channel id, username and changechannelinfo function from context
+    const { channelId, userName, changeChannelInfo } = useContext(AppContext);
+
     const {
         values,
         handleChange,
-        handleSubmitWithCallback,
         handleClick
-    } = usePostAPI({ creator: UserName }, false, handleUserSubmit);
+    } = usePostAPI('', { creator: userName });
+
+    // new username was submitted
+    const handleSubmit = () => {
+        event.preventDefault();
+        changeChannelInfo(channelId, values.creator);
+    };
 
     // render form
     return (
-        <form className="AddUserNameForm" onSubmit={handleSubmitWithCallback}>
-            <input
-                type="text"
-                name="creator"
-                value={values.creator}
-                className="AddUserNameInput form-control"
-                onChange={handleChange}
-                onClick={handleClick}
-            />
-            <button type="submit" className="AddUserNameButton btn btn-light">></button>
-        </form>
+        <div className="AddUserName">
+            {CONST.CHANGE_USERNAME}
+            <form className="AddUserNameForm" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="creator"
+                    value={values.creator}
+                    className="AddUserNameInput form-control"
+                    onChange={handleChange}
+                    onClick={handleClick}
+                />
+                <button type="submit"
+                    className="AddUserNameButton btn btn-light"
+                    disabled={values.creator.trim() === ''}>
+                    >
+                </button>
+            </form>
+        </div>
     );
-};
-
-// prop definitions
-AddUserName.propTypes = {
-    handleUserSubmit: PropTypes.func
 };
 
 export default AddUserName;

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './__styles__/ChannelItem.scss';
 
-const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
+const ChannelItem = ({ item, ChannelId, handleClick }) => {
     // render channel item and AddUserName component that was provided as child prop
     return (
         <li id={item.id}
@@ -16,7 +17,6 @@ const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
             <span className="ChannelItemTopic">
                 {item.topic}
             </span>
-            {children}
         </li>
     );
 };
@@ -25,8 +25,7 @@ const ChannelItem = ({ item, ChannelId, handleClick, children }) => {
 ChannelItem.propTypes = {
     item: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     ChannelId: PropTypes.number,
-    handleClick: PropTypes.func,
-    children: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
+    handleClick: PropTypes.func
 };
 
 export default ChannelItem;

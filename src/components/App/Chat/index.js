@@ -1,8 +1,10 @@
 import React from 'react';
+
 import Content from './Content';
 import Input from './Input';
 import Message from './Message';
 import ChannelName from './ChannelName';
+
 import './__styles__/Chat.scss';
 
 const Chat = () => {

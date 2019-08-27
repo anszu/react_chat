@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import * as CONST from '../constants';
 
-const usePostAPI = (presetValues, ApiParam, callbackSubmit = false) => {
+const usePostAPI = (apiParam = '', presetValues = {}) => {
     // set state for form values and api request result state
     const [values, setValues] = useState(presetValues);
     const [result, setResult] = useState();
@@ -19,7 +20,7 @@ const usePostAPI = (presetValues, ApiParam, callbackSubmit = false) => {
     // handle submit of form and POST to API
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`${CONST.API_POST_URL}/${ApiParam}`, {
+        fetch(`${CONST.API_POST_URL}/${apiParam}`, {
             method: 'POST',
             headers: CONST.API_HEADERS,
             body: JSON.stringify(values)
@@ -38,18 +39,11 @@ const usePostAPI = (presetValues, ApiParam, callbackSubmit = false) => {
         }
     };
 
-    // for non standart submit handling, call a callback
-    const handleSubmitWithCallback = (event) => {
-        event.preventDefault();
-        callbackSubmit(values);
-    };
-
     // return functionalities
     return {
         values,
         handleChange,
         handleSubmit,
-        handleSubmitWithCallback,
         handleClick,
         updateValue,
         result

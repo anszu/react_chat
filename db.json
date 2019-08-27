@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Smalltalk",
       "topic": "everything else"
+    },
+    {
+      "name": "hdhjjhsd",
+      "topic": "dssdsdsd",
+      "id": 4
     }
   ],
   "messages": [
@@ -44,6 +49,34 @@
       "timestamp": "2019-8-20 16:26:45",
       "channelId": "2",
       "id": 9
+    },
+    {
+      "content": "das ist ein test",
+      "creator": "guest",
+      "timestamp": "2019-8-27 14:7:37",
+      "channelId": "1",
+      "id": 10
+    },
+    {
+      "content": "hallo",
+      "creator": "guest",
+      "timestamp": "2019-8-27 14:7:58",
+      "channelId": "2",
+      "id": 11
+    },
+    {
+      "content": "test",
+      "creator": "anika",
+      "timestamp": "2019-8-27 14:9:29",
+      "channelId": "1",
+      "id": 12
+    },
+    {
+      "content": "test",
+      "creator": "anna",
+      "timestamp": "2019-8-27 14:9:55",
+      "channelId": "1",
+      "id": 13
     }
   ]
 }

@@ -1,23 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+
 import AddUserName from './AddUserName';
 import ChannelItem from './ChannelItem';
-import ChannelNavigation from './ChannelNavigation';
 import AddChannel from './AddChannel';
 import useGetAPI from '../Hooks/useGetAPI';
 import { AppContext } from '../AppContext';
 import * as CONST from '../constants';
+
 import './__styles__/Channels.scss';
 
 const Channels = () => {
     // get channel id, username and changechannelinfo function from context
-    const { ChannelId, UserName, changeChannelInfo } = useContext(AppContext);
-
-    // set state for channel id and api param
-    const [currentChannel, setCurrentChannel] = useState(ChannelId);
-    const [currentAPIParam, setCurrentAPIParam] = useState(CONST.API_PARAM_CHANNELS);
+    const { channelId, userName, changeChannelInfo } = useContext(AppContext);
 
     // call get hook
-    const { values } = useGetAPI(currentAPIParam, CONST.REFRESH_CHANNELS);
+    const { values } = useGetAPI(CONST.API_PARAM_CHANNELS, CONST.REFRESH_CHANNELS);
 
     // channel was clicked
     const handleClick = (event) => {
@@ -32,19 +29,7 @@ const Channels = () => {
         target.classList.add(`ChannelItem--active`);
 
         // update channel id
-        setCurrentChannel(parseInt(target.id, 10));
-    };
-
-    // new username was submitted
-    const handleSubmit = (values) => {
-        if (!values.creator) { values.creator = UserName; }
-        changeChannelInfo(currentChannel, values.creator);
-    };
-
-    // channel navigation was used
-    const handleChannelNav = (event) => {
-        event.preventDefault();
-        setCurrentAPIParam(event.target.id);
+        changeChannelInfo(parseInt(target.id, 10), userName);
     };
 
     // call subcomponents
@@ -52,21 +37,21 @@ const Channels = () => {
     return (
         <div className="Channels">
             <div className="ChannelsBar">
-                <div className="ChannelsUser">eingeloggt als {UserName}</div>
+                <div className="ChannelsUser">
+                    {CONST.DISPLAY_USERNAME}{userName}
+                </div>
+                <AddUserName/>
                 { values &&
                     <>
-                        <ChannelNavigation handleClick={handleChannelNav} data={values.links}/>
                         <ul className="ChannelsList" id="ChannelsList">
                             { values.map((item) => {
                                 if (item.name) {
                                     return (
                                         <ChannelItem
                                             item={item}
-                                            ChannelId={ChannelId}
+                                            channelId={channelId}
                                             handleClick={handleClick}
-                                            key={item.id}>
-                                            <AddUserName handleUserSubmit={handleSubmit}/>
-                                        </ChannelItem>
+                                            key={item.id}/>
                                     );
                                 }
                             })}

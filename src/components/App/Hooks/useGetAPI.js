@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
 import * as CONST from '../constants';
 
-const useGetAPI = (APIParam = '', RefreshTime = false) => {
+const useGetAPI = (apiParam = '', refreshTime = false) => {
     // set state for resultset values
     const [values, setValues] = useState();
 
@@ -10,7 +11,7 @@ const useGetAPI = (APIParam = '', RefreshTime = false) => {
 
     // call API and get result data
     const callAPI = () => {
-        fetch(`${CONST.API_GET_URL}/${APIParam}`, {
+        fetch(`${CONST.API_GET_URL}/${apiParam}`, {
             headers: CONST.API_TOKEN
         })
             .then(res => res.json())
@@ -23,8 +24,8 @@ const useGetAPI = (APIParam = '', RefreshTime = false) => {
     useEffect(() => {
         // if refresh is needed
         // set interval for repeating API call after first render
-        if (RefreshTime) {
-            interval = setInterval(callAPI, RefreshTime);
+        if (refreshTime) {
+            interval = setInterval(callAPI, refreshTime);
         } else {
             callAPI();
         }
@@ -33,7 +34,7 @@ const useGetAPI = (APIParam = '', RefreshTime = false) => {
         return () => {
             if (interval) { clearInterval(interval); }
         };
-    }, [APIParam]);
+    }, [apiParam]);
 
     // return functionalities
     return {
@@ -42,4 +43,3 @@ const useGetAPI = (APIParam = '', RefreshTime = false) => {
 };
 
 export default useGetAPI;
-

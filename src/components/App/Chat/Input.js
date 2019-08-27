@@ -1,20 +1,22 @@
 import React, { useContext } from 'react';
+
 import usePostAPI from '../Hooks/usePostAPI';
 import { AppContext } from '../AppContext';
 import * as CONST from '../constants';
+
 import './__styles__/Input.scss';
 
 const Input = () => {
     // get channel id and username from context and call post hook
-    const { ChannelId, UserName } = useContext(AppContext);
+    const { channelId, userName } = useContext(AppContext);
 
     const {
         values,
         handleChange,
         handleSubmit,
         updateValue
-    } = usePostAPI({ content: '', creator: UserName },
-        `${CONST.API_PARAM_CHANNELS}/${ChannelId}/${CONST.API_PARAM_MESSAGES}`);
+    } = usePostAPI(`${CONST.API_PARAM_CHANNELS}/${channelId}/${CONST.API_PARAM_MESSAGES}`,
+        { content: '', creator: userName });
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -23,7 +25,7 @@ const Input = () => {
     };
 
     // update creator if necessary
-    updateValue(UserName, 'creator');
+    updateValue(userName, 'creator');
     updateValue(getCurrentDate(), 'timestamp');
 
     // display form
@@ -35,7 +37,7 @@ const Input = () => {
                     type="submit"
                     className="InputButton btn btn-light"
                     disabled={values.content.trim() === ''}>
-                        Absenden
+                    {CONST.BUTTON_MESSAGE_INPUT}
                 </button>
             </form>
         </div>
