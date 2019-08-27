@@ -31,4 +31,3 @@ export const BUTTON_MESSAGE_INPUT = 'Absenden';
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
 export const REFRESH_MESSAGES = 1000;
-export const REFRESH_USERLIST = 1000;
