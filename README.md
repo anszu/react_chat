@@ -264,7 +264,7 @@ There are no cross imports.
 
 --- [Channels](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/index.js)   
 ------ [AddChannel](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddChannel.js)  
------- [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)
+------ [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)  
 ------ [AddUserName](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddUserName.js) 
  
 --- [Chat](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/index.js)  
