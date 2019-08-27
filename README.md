@@ -1,6 +1,6 @@
 # Slack like chat system based on React
 
-Chatsystem including channel structure, channel creation and post and get setup towards on API. 
+Chatsystem including channel structure, channel creation and post and get setup towards on API. This application is using React Hooks for controlling forms and API actions and React Context for shared states. To demonstrate the differences between React Context and Redux please have a look at the [react_chat_redux](https://github.com/anszu/react_chat_redux) fork. It is using Redux for state management and compares the two versions in it's Readme.
 
 ![Screenshot](https://github.com/anszu/react_chat/blob/master/screenshots/screen.png?raw=true)
 
@@ -17,15 +17,15 @@ Chatsystem including channel structure, channel creation and post and get setup 
 
 ## Concept
 
-This chat is using custom hooks for API requests and React Context for state management.
+This chat is using custom React Hooks for API requests and React Context for state management. Please see [react_chat_redux](https://github.com/anszu/react_chat_redux) for a version using Redux.
 
 ![Concept](https://github.com/anszu/react_chat/blob/master/screenshots/concept.png)
 
-* Please note that the UserList component got deleted since moving to a fake API solution
+* Please note that the UserList and ChannelNavigation components got deleted since moving to a fake API solution
 
 ## Configuration
 
-[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings. It was prefilled to be used with a faked REST API. 
+[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings, wordings and refresh intervalls. It was prefilled to be used with a faked REST API. 
 You can find the data for this API in [db.json](https://github.com/anszu/react_chat/blob/master/db.json).
 
 Please be aware there is an expected structure for the REST API when using the API Parameters. If your API doesn't match this structure you have to adapt the calling components.
@@ -46,10 +46,24 @@ export const API_PARAM_CHANNELS = 'channels';
 // expected format: API_PARAM_CHANNELS/ChannelId/API_PARAM_MESSAGES
 export const API_PARAM_MESSAGES = 'messages';
 
+// Wordings
+// new channel
+export const NEW_CHANNEL_NAME_INPUT = 'Name';
+export const NEW_CHANNEL_TOPIC_INPUT = 'Thema';
+export const NEW_CHANNEL_SUCCESS = 'Angelegt!';
+export const NEW_CHANNEL_ERROR = 'Fehler!';
+export const NEW_CHANNEL_INPUT = 'Neuer Channel: ';
+
+// username
+export const DISPLAY_USERNAME = 'eingeloggt als ';
+export const CHANGE_USERNAME = 'Usernamen ändern:';
+
+// message input button
+export const BUTTON_MESSAGE_INPUT = 'Absenden';
+
 // refresh settings
 export const REFRESH_CHANNELS = 10000;
 export const REFRESH_MESSAGES = 1000;
-export const REFRESH_USERLIST = 1000;
 ```
 
 ## Context
@@ -64,29 +78,31 @@ export const AppContextProvider = AppContext.Provider;
 export const AppContextConsumer = AppContext.Consumer;
 ```
 
-The ```App``` component is importing ```AppContextProvider``` to pass down ```ChannelId```, ```UserName```and ```changeChannelInfo()``` to it's sub components.
+The ```App``` component is importing ```AppContextProvider``` to pass down ```channelId```, ```userName```and ```changeChannelInfo()``` to it's sub components.
 
 ```javascript
 import { AppContextProvider } from './AppContext';
 
 const App = () => {
     // define states
-    const [ChannelId, setChannelId] = useState(1);
-    const [UserName, setUserName] = useState('guest');
+    const [channelId, setChannelId] = useState(1);
+    const [userName, setUserName] = useState('guest');
 
     // reset state for channel id and username
-    const changeChannelInfo = (ChannelId, UserName) => {
-        ...
+    const changeChannelInfo = (channelId, userName) => {
+        setChannelId(channelId);
+        setUserName(userName);
     };
 
     // call subcomponents with context provider
     return (
         <div className="App">
             <AppContextProvider value={{
-                ChannelId: ChannelId,
-                UserName: UserName,
+                channelId: channelId,
+                userName: userName,
                 changeChannelInfo: changeChannelInfo }}>
-                ...
+                <Channels/>
+                <Chat/>
             </AppContextProvider>
         </div>
     );
@@ -99,7 +115,7 @@ Example usage in [src/components/App/Chat/Input.js](https://github.com/anszu/rea
 ```javascript
 const Input = () => {
     // get channel id and username from context and call post hook
-    const { ChannelId, UserName } = useContext(AppContext);
+    const { channelId, userName } = useContext(AppContext);
     ...
 }
 ```
@@ -115,20 +131,20 @@ Is controlling GET Requests for all calling components.
 
 **Arguments:**
 ```javascript
-const useGetAPI = (APIParam = '', RefreshTime = false)
+const useGetAPI = (apiParam = '', refreshTime = false)
 
 // (Optional)(String) path to API ressource
-APIParam
+apiParam
 
 // (Optional)(String) if the GET call should be repeated, set the interval
-RefreshTime
+refreshTime
 ```
 
 **Functions:**
 ```javascript
 // call API and get result data
 const callAPI = () => {
-  fetch(`${CONST.API_GET_URL}/${APIParam}`, {
+  fetch(`${CONST.API_GET_URL}/${apiParam}`, {
     headers: CONST.API_TOKEN
    })
   .then(res => res.json())
@@ -144,7 +160,7 @@ const callAPI = () => {
 useEffect(() => {
         
   // at first call, either set intervall or call API directly
-  if (RefreshTime) {
+  if (refreshTime) {
     interval = setInterval(callAPI, RefreshTime);
   } else {
     callAPI();
@@ -154,7 +170,7 @@ useEffect(() => {
   return () => {
     if (interval) { clearInterval(interval); }
   };
-}, [APIParam]);
+}, [apiParam]);
 ```
 
 ***Return values:***
@@ -170,16 +186,13 @@ Is controlling POST Requests for all calling components. Also controlls forms th
 
 **Arguments:**
 ```javascript
-const usePostAPI = (presetValues, ApiParam = '', callbackSubmit = false)
+const usePostAPI = (apiParam = '', presetValues = {})
+
+// (Optional)(String) path to API ressource
+apiParam
 
 // (Optional)(Object) optional object for prefilling a form
 presetValues
-
-// (Optional)(String) path to API ressource
-APIParam
-
-// (Optional)(Function) if there is a non-default action required after posting, it can be set here
-callbackSubmit
 ```
 
 **Functions:**
@@ -198,7 +211,7 @@ const handleChange = (event) => {
 // handle submit of form and POST to API
 const handleSubmit = (event) => {
   ...
-  fetch(`${CONST.API_POST_URL}/${ApiParam}`, {
+  fetch(`${CONST.API_POST_URL}/${apiParam}`, {
     method: 'POST',
     headers: CONST.API_HEADERS,
     body: JSON.stringify(values)
@@ -210,11 +223,6 @@ const handleSubmit = (event) => {
 
 // update a value manually by calling this function
 const updateValue = (newValue, key) => {
-  ...
-};
-
-// for non standart submit handling, call a callback
-const handleSubmitWithCallback = (event) => {
   ...
 };
 ```
@@ -232,9 +240,6 @@ handleChange
 handleSubmit
 
 // (Function) see definition above
-handleSubmitWithCallback
-
-// (Function) see definition above
 handleClick
 
 // (Function) see definition above
@@ -248,7 +253,7 @@ result
 
 For better readability the implemented React components are using a strict top down import hierarchy, meaning: 
 
-```App``` imports ```Channels``` imports ```AddChannel/ ChannelItem/ AddUserName/ ChannelNavigation```  
+```App``` imports ```Channels``` imports ```AddChannel/ ChannelItem/ AddUserName```  
 ```App``` imports ```Chat``` imports ```Content/ Message/ Input```
 
 There are no cross imports.
@@ -259,10 +264,9 @@ There are no cross imports.
 
 --- [Channels](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/index.js)   
 ------ [AddChannel](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddChannel.js)  
------- [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)   
------- [AddUserName](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddUserName.js)  
------- [ChannelNavigation](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelNavigation.js)  
-
+------ [ChannelItem](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/ChannelItem.js)
+------ [AddUserName](https://github.com/anszu/react_chat/blob/master/src/components/App/Channels/AddUserName.js) 
+ 
 --- [Chat](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/index.js)  
 ------ [Content](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Content.js)  
 ------ [Message](https://github.com/anszu/react_chat/blob/master/src/components/App/Chat/Message.js)  
