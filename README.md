@@ -13,7 +13,7 @@ Chatsystem including channel structure, channel creation and post and get setup 
 5. Install packages with ```npm install```
 6. Go to the root folder of this repository and run ```json-server --watch db.json``` to start the REST API
 7. Run with ```npm run start```
-8. If you want you can modify [constants.js](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) with alternative API settings if you would like to use a real API (see [here](https://github.com/anszu/react_chat#configuration)). If you are running the Json Server at another port than 3000, you also have to modify the settings.
+8. If you want you can modify [constants.js](https://github.com/anszu/react_chat/blob/master/src/constants.js) with alternative API settings if you would like to use a real API (see [here](https://github.com/anszu/react_chat#configuration)). If you are running the Json Server at another port than 3000, you also have to modify the settings.
 
 ## Concept
 
@@ -25,7 +25,7 @@ This chat is using custom React Hooks for API requests and React Context for sta
 
 ## Configuration
 
-[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/components/App/constants.js) holds global constants to define API related settings, wordings and refresh intervalls. It was prefilled to be used with a faked REST API. 
+[**constants.js**](https://github.com/anszu/react_chat/blob/master/src/constants.js) holds global constants to define API related settings, wordings and refresh intervalls. It was prefilled to be used with a faked REST API. 
 You can find the data for this API in [db.json](https://github.com/anszu/react_chat/blob/master/db.json).
 
 Please be aware there is an expected structure for the REST API when using the API Parameters. If your API doesn't match this structure you have to adapt the calling components.
@@ -68,9 +68,9 @@ export const REFRESH_MESSAGES = 1000;
 
 ## Context
 
-React Context is used to transfer state between components.
+React Context is used to share state between components. A detailed description about the usage of React Context vs the usage of React Redux for this chat can be found in the [react_chat_redux fork](https://github.com/anszu/react_chat_redux).
 
-Context objects are created in [src/components/App/AppContext.js](https://github.com/anszu/react_chat/edit/master/src/components/App/AppContext.js):
+Context objects are created in [src/components/App/AppContext.js](https://github.com/anszu/react_chat/blob/master/src/AppContext.js):
 ```javascript
 // create context objects
 export const AppContext = React.createContext({});
@@ -78,7 +78,7 @@ export const AppContextProvider = AppContext.Provider;
 export const AppContextConsumer = AppContext.Consumer;
 ```
 
-The ```App``` component is importing ```AppContextProvider``` to pass down ```channelId```, ```userName```and ```changeChannelInfo()``` to it's sub components.
+The ```App``` component is importing ```AppContextProvider``` to pass down ```channelId```, ```userName``` and the Functions ```selectChannel()``` and ```selectUserName()``` to it's sub components.
 
 ```javascript
 import { AppContextProvider } from './AppContext';
@@ -88,9 +88,13 @@ const App = () => {
     const [channelId, setChannelId] = useState(1);
     const [userName, setUserName] = useState('guest');
 
-    // reset state for channel id and username
-    const changeChannelInfo = (channelId, userName) => {
+    // reset state for channel id
+    const selectChannel = (channelId) => {
         setChannelId(channelId);
+    };
+
+    // reset state for username
+    const selectUserName = (userName) => {
         setUserName(userName);
     };
 
@@ -98,9 +102,7 @@ const App = () => {
     return (
         <div className="App">
             <AppContextProvider value={{
-                channelId: channelId,
-                userName: userName,
-                changeChannelInfo: changeChannelInfo }}>
+                channelId, userName, selectChannel, selectUserName }}>
                 <Channels/>
                 <Chat/>
             </AppContextProvider>
@@ -126,7 +128,7 @@ All requests towards the API are done via Hooks.
 
 ### useGetAPI
 
-[***useGetAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/useGetAPI.js)  
+[***useGetAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/Hooks/useGetAPI.js)  
 Is controlling GET Requests for all calling components.
 
 **Arguments:**
@@ -181,7 +183,7 @@ values
 
 ### usePostAPI
 
-[***usePostAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/App/Hooks/usePostAPI.js)  
+[***usePostAPI.js***](https://github.com/anszu/react_chat/blob/master/src/components/Hooks/usePostAPI.js)  
 Is controlling POST Requests for all calling components. Also controlls forms that are used for posting.
 
 **Arguments:**
