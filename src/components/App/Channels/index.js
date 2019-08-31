@@ -3,15 +3,15 @@ import React, { useContext } from 'react';
 import AddUserName from './AddUserName';
 import ChannelItem from './ChannelItem';
 import AddChannel from './AddChannel';
-import useGetAPI from '../Hooks/useGetAPI';
-import { AppContext } from '../AppContext';
-import * as CONST from '../constants';
+import useGetAPI from '../../Hooks/useGetAPI';
+import { AppContext } from '../../../AppContext';
+import * as CONST from '../../../constants';
 
 import './__styles__/Channels.scss';
 
 const Channels = () => {
     // get channel id, username and changechannelinfo function from context
-    const { channelId, userName, changeChannelInfo } = useContext(AppContext);
+    const { channelId, userName, selectChannel } = useContext(AppContext);
 
     // call get hook
     const { values } = useGetAPI(CONST.API_PARAM_CHANNELS, CONST.REFRESH_CHANNELS);
@@ -29,7 +29,7 @@ const Channels = () => {
         target.classList.add(`ChannelItem--active`);
 
         // update channel id
-        changeChannelInfo(parseInt(target.id, 10), userName);
+        selectChannel(parseInt(target.id, 10));
     };
 
     // call subcomponents

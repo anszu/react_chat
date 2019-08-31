@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
-import usePostAPI from '../Hooks/usePostAPI';
-import { AppContext } from '../AppContext';
-import * as CONST from '../constants';
+import usePostAPI from '../../Hooks/usePostAPI';
+import { AppContext } from '../../../AppContext';
+import * as CONST from '../../../constants';
 
 import './__styles__/Input.scss';
 

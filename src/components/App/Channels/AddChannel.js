@@ -1,7 +1,7 @@
 import React from 'react';
 
-import usePostAPI from '../Hooks/usePostAPI';
-import * as CONST from '../constants';
+import usePostAPI from '../../Hooks/usePostAPI';
+import * as CONST from '../../../constants';
 
 import './__styles__/AddChannel.scss';
 

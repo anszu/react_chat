@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as CONST from '../constants';
+import * as CONST from '../../constants';
 
 const usePostAPI = (apiParam = '', presetValues = {}) => {
     // set state for form values and api request result state

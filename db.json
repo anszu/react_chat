@@ -30,6 +30,20 @@
       "timestamp": "2019-04-12T09:30:49.560247Z",
       "content": "Hello!",
       "channelId": "1"
+    },
+    {
+      "content": "hallo!",
+      "creator": "anika",
+      "timestamp": "2019-8-31 10:46:54",
+      "channelId": "3",
+      "id": 3
+    },
+    {
+      "content": "hi!",
+      "creator": "anna",
+      "timestamp": "2019-8-31 11:25:37",
+      "channelId": "3",
+      "id": 4
     }
   ]
 }

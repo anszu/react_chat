@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import * as CONST from '../constants';
+import * as CONST from '../../constants';
 
 const useGetAPI = (apiParam = '', refreshTime = false) => {
     // set state for resultset values

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 
-import usePostAPI from '../Hooks/usePostAPI';
-import { AppContext } from '../AppContext';
-import * as CONST from '../constants';
+import usePostAPI from '../../Hooks/usePostAPI';
+import { AppContext } from '../../../AppContext';
+import * as CONST from '../../../constants';
 
 import './__styles__/AddUserName.scss';
 
 const AddUserName = () => {
     // get channel id, username and changechannelinfo function from context
-    const { channelId, userName, changeChannelInfo } = useContext(AppContext);
+    const { userName, selectUserName } = useContext(AppContext);
 
     const {
         values,
@@ -19,7 +19,7 @@ const AddUserName = () => {
     // new username was submitted
     const handleSubmit = () => {
         event.preventDefault();
-        changeChannelInfo(channelId, values.creator);
+        selectUserName(values.creator);
     };
 
     // render form

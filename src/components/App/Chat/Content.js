@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import * as CONST from '../constants';
-import useGetAPI from '../Hooks/useGetAPI';
-import { AppContext } from '../AppContext';
+import * as CONST from '../../../constants';
+import useGetAPI from '../../Hooks/useGetAPI';
+import { AppContext } from '../../../AppContext';
 
 import './__styles__/Content.scss';
 

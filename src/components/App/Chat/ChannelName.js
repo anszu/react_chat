@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
-import useGetAPI from '../Hooks/useGetAPI';
-import { AppContext } from '../AppContext';
-import * as CONST from '../constants';
+import useGetAPI from '../../Hooks/useGetAPI';
+import { AppContext } from '../../../AppContext';
+import * as CONST from '../../../constants';
 
 import './__styles__/ChannelName.scss';
 
