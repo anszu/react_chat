@@ -1,6 +1,6 @@
 # Slack like chat system based on React
 
-Chatsystem including channel structure, channel creation and post and get setup towards on API. This application is using React Hooks for controlling forms and API actions and React Context for shared states. To demonstrate the differences between React Context and Redux please have a look at the [react_chat_redux](https://github.com/anszu/react_chat_redux) fork. It is using Redux for state management and compares the two versions in it's Readme.
+Chatsystem including channel structure, channel creation and post and get setup towards on API. This application is using React Hooks for controlling forms and API actions and React Context for shared states. To demonstrate the differences between React Context and Redux have a look at the [react_chat_redux](https://github.com/anszu/react_chat_redux) fork.
 
 ![Screenshot](https://github.com/anszu/react_chat/blob/master/screenshots/screen.png?raw=true)
 
@@ -17,7 +17,7 @@ Chatsystem including channel structure, channel creation and post and get setup 
 
 ## Concept
 
-This chat is using custom React Hooks for API requests and React Context for state management. Please see [react_chat_redux](https://github.com/anszu/react_chat_redux) for a version using Redux.
+This chat is using custom React Hooks for API requests and React Context for state management, see [react_chat_redux](https://github.com/anszu/react_chat_redux) for a version using Redux.
 
 ![Concept](https://github.com/anszu/react_chat/blob/master/screenshots/concept.png)
 
