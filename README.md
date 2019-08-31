@@ -75,7 +75,6 @@ Context objects are created in [src/components/App/AppContext.js](https://github
 // create context objects
 export const AppContext = React.createContext({});
 export const AppContextProvider = AppContext.Provider;
-export const AppContextConsumer = AppContext.Consumer;
 ```
 
 The ```App``` component is importing ```AppContextProvider``` to pass down ```channelId```, ```userName``` and the Functions ```selectChannel()``` and ```selectUserName()``` to it's sub components.
